@@ -2,6 +2,8 @@
 
 # CKS for VS Code
 
+<p align="center"><a href="https://marketplace.visualstudio.com/items?itemName=Upercat.cks-language"><img src="https://img.shields.io/visual-studio-marketplace/v/Upercat.cks-language?label=VS%20Code%20Marketplace" alt="VS Code Marketplace"></a></p>
+
 *[Leer en español](README.es.md)*
 
 Unofficial, community-made language support for the CKS scripting language of **Imperivm**
@@ -30,7 +32,9 @@ reported (the game reports `No matching function with name ...`).
 
 ## Install
 
-Download the `.vsix` from the [releases page](https://github.com/Upercat/VS-code-CKS-extension/releases) and run **Extensions → … → Install from VSIX…**.
+**[Install from the Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=Upercat.cks-language)**, or search for `@id:Upercat.cks-language`
+in the Extensions view of VS Code. You can also download the `.vsix` from the
+[releases page](https://github.com/Upercat/VS-code-CKS-extension/releases) and run **Extensions → … → Install from VSIX…**.
 Open your game folder (or its `DATA` folder) and any `.vs` script.
 
 ## Build from source
