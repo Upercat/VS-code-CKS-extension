@@ -1,3 +1,5 @@
+<p align="center"><img src="images/icon.png" alt="CKS" width="128"></p>
+
 # CKS for VS Code
 
 *[Leer en español](README.es.md)*
@@ -64,6 +66,12 @@ The most useful contribution is **documentation**. About 1,400 functions already
 description, written from reverse engineering: accurate, but technical (VM stack, return status,
 memory offsets) rather than practical. Plain-language rewrites, parameter meanings, units,
 examples and Spanish translations are very welcome. See [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## Credits
+
+This project builds on the work of **David Campos Rodríguez**, whose
+[CKS reference](https://david-campos.com/cks/) was the starting point of our research into the
+language. Many thanks for documenting it and for allowing us to credit it here.
 
 ## License
 

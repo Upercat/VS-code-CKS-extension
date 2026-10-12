@@ -1,3 +1,5 @@
+<p align="center"><img src="images/icon.png" alt="CKS" width="128"></p>
+
 # CKS para VS Code
 
 *[Read in English](README.md)*
@@ -56,6 +58,12 @@ Lo más útil es la **documentación**. Unas 1.400 funciones ya tienen descripci
 partir de ingeniería inversa: precisa, pero técnica (pila de la VM, estado de retorno, desplazamientos
 de memoria) más que práctica. Se agradecen reescrituras en lenguaje claro, el significado de los
 parámetros, unidades, ejemplos y traducciones al español. Consulta [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## Créditos
+
+Este proyecto parte del trabajo de **David Campos Rodríguez**, cuya
+[referencia de CKS](https://david-campos.com/cks/) fue el punto de partida de nuestra investigación
+del lenguaje. Muchas gracias por documentarlo y por permitirnos citarlo aquí.
 
 ## Licencia
 

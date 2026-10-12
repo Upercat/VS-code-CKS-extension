@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.1 (preview)
+
+- Credits to David Campos Rodríguez and his [CKS reference](https://david-campos.com/cks/).
+- Logo in the README.
+
 ## 0.1.0 (preview)
 
 - Syntax highlighting, snippets and Windows-1252 / CRLF defaults for `.vs` scripts.
