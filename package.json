@@ -7,6 +7,14 @@
   "private": true,
   "license": "GPL-3.0-or-later",
   "preview": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Upercat/VS-code-CKS-extension.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Upercat/VS-code-CKS-extension/issues"
+  },
+  "homepage": "https://github.com/Upercat/VS-code-CKS-extension#readme",
   "engines": {
     "vscode": "^1.90.0"
   },

@@ -28,7 +28,7 @@ reported (the game reports `No matching function with name ...`).
 
 ## Install
 
-Download the `.vsix` from the releases page and run **Extensions → … → Install from VSIX…**.
+Download the `.vsix` from the [releases page](https://github.com/Upercat/VS-code-CKS-extension/releases) and run **Extensions → … → Install from VSIX…**.
 Open your game folder (or its `DATA` folder) and any `.vs` script.
 
 ## Build from source

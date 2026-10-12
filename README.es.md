@@ -30,7 +30,7 @@ equivocado no se marca (el juego dice `No matching function with name ...`).
 
 ## Instalación
 
-Descarga el `.vsix` de la página de versiones y usa **Extensiones → … → Instalar desde VSIX…**.
+Descarga el `.vsix` de la [página de versiones](https://github.com/Upercat/VS-code-CKS-extension/releases) y usa **Extensiones → … → Instalar desde VSIX…**.
 Abre la carpeta del juego (o su carpeta `DATA`) y cualquier script `.vs`.
 
 ## Compilar desde el código
