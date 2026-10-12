@@ -6,6 +6,7 @@
   "publisher": "imperivm-community",
   "private": true,
   "license": "GPL-3.0-or-later",
+  "preview": true,
   "engines": {
     "vscode": "^1.90.0"
   },

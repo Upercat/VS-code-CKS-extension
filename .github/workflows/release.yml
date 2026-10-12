@@ -1,0 +1,38 @@
+# Pushing a tag such as v0.1.0 builds the extension, attaches the .vsix to a GitHub release and
+# publishes it to Open VSX and the Visual Studio Marketplace. Each registry is skipped when its
+# token secret (OVSX_PAT, VSCE_PAT) is not configured in the repository settings.
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    env:
+      OVSX_PAT: ${{ secrets.OVSX_PAT }}
+      VSCE_PAT: ${{ secrets.VSCE_PAT }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci
+      - run: npm run compile
+      - name: Check the tag matches package.json
+        run: test "v$(node -p "require('./package.json').version")" = "$GITHUB_REF_NAME"
+      - run: npx --yes @vscode/vsce@3 package --out cks-language.vsix
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: cks-language.vsix
+          body_path: CHANGELOG.md
+      - name: Publish to Open VSX
+        if: env.OVSX_PAT != ''
+        run: npx --yes ovsx@0 publish cks-language.vsix -p "$OVSX_PAT"
+      - name: Publish to the Visual Studio Marketplace
+        if: env.VSCE_PAT != ''
+        run: npx --yes @vscode/vsce@3 publish --packagePath cks-language.vsix -p "$VSCE_PAT"

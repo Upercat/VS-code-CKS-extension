@@ -60,8 +60,10 @@ node out/tools/checkCorpus.js "C:/Games/Imperivm"
 
 ## Contributing
 
-The most useful contribution is **documentation**: what a function does, its parameters and
-units, pitfalls and short examples, in English or Spanish. See [CONTRIBUTING.md](CONTRIBUTING.md).
+The most useful contribution is **documentation**. About 1,400 functions already have an English
+description, written from reverse engineering: accurate, but technical (VM stack, return status,
+memory offsets) rather than practical. Plain-language rewrites, parameter meanings, units,
+examples and Spanish translations are very welcome. See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## License
 

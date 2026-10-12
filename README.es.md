@@ -52,8 +52,10 @@ node out/tools/checkCorpus.js "C:/Juegos/Imperivm"
 
 ## Contribuir
 
-Lo más útil es la **documentación**: qué hace cada función, sus parámetros y unidades, trampas y
-ejemplos cortos, en español o en inglés. Consulta [CONTRIBUTING.md](CONTRIBUTING.md).
+Lo más útil es la **documentación**. Unas 1.400 funciones ya tienen descripción en inglés, escrita a
+partir de ingeniería inversa: precisa, pero técnica (pila de la VM, estado de retorno, desplazamientos
+de memoria) más que práctica. Se agradecen reescrituras en lenguaje claro, el significado de los
+parámetros, unidades, ejemplos y traducciones al español. Consulta [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Licencia
 

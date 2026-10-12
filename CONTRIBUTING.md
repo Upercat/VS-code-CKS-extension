@@ -6,7 +6,11 @@ published under the [GPL-3.0-or-later](LICENSE).
 ## Documenting functions
 
 Documentation lives in `data/docs/primitives.en.json` (English) and
-`data/docs/primitives.es.json` (Spanish). VS Code validates both files against
+`data/docs/primitives.es.json` (Spanish). The English file starts with technical descriptions taken
+from reverse engineering of the game: they say what the native code does (stack, return status,
+fields) and often what is still unknown (*Limitations*). Rewriting them in plain language is the
+best way to help: keep the facts, explain what a scripter needs, and keep a limitation until someone
+has actually checked it. VS Code validates both files against
 `data/docs/primitives.schema.json` while you edit them.
 
 ```json
