@@ -3,7 +3,7 @@
   "displayName": "%displayName%",
   "description": "%description%",
   "version": "0.1.0",
-  "publisher": "imperivm-community",
+  "publisher": "Upercat",
   "private": true,
   "license": "GPL-3.0-or-later",
   "preview": true,
