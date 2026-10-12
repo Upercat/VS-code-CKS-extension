@@ -216,6 +216,17 @@ export function analyze(source: string, ctx: AnalysisContext): Analysis {
         case '!':
           checkPrefixNot(i);
           break;
+        case '.':
+          // A leading `.` reads the variable `this`, which the script must declare.
+          if (!endsOperand(prev) && !variables.has('this')) {
+            diagnostics.push({
+              message: "A leading '.' reads the variable 'this', which this script does not declare (e.g. `Unit this;` or a `this` parameter)",
+              start: t.start,
+              end: tokens[i + 1]?.kind === 'identifier' ? tokens[i + 1].end : t.end,
+              severity: 'error',
+            });
+          }
+          break;
       }
     }
 
@@ -265,7 +276,8 @@ export function analyze(source: string, ctx: AnalysisContext): Analysis {
 
   function checkIdentifier(t: Token) {
     const name = t.text;
-    if (name === 'this' || variables.has(name) || INT_CONSTANTS.has(name) || ctx.constants.has(name)) return;
+    // `this` is an ordinary variable name, not a keyword: it must be declared like any other.
+    if (variables.has(name) || INT_CONSTANTS.has(name) || ctx.constants.has(name)) return;
     if (TYPE_BY_NAME.has(name) || ctx.primitives.overloads(name).length > 0) return;
     diagnostics.push({ message: `Unknown identifier '${name}'`, start: t.start, end: t.end, severity: 'error' });
   }
@@ -285,9 +297,20 @@ export function tokenAt(tokens: Token[], offset: number): number {
   return lo;
 }
 
-// Static type of the expression that ends at token `index` when it is a plain variable.
-export function variableTypeBefore(analysis: Analysis, index: number): string | undefined {
-  const t = analysis.tokens[index];
-  if (t?.kind !== 'identifier') return undefined;
-  return analysis.variables.get(t.text)?.type;
+// A token that can end an operand, so a `.` after it is a member access on that operand.
+export function endsOperand(t: Token | undefined): boolean {
+  if (!t) return false;
+  if (t.kind === 'identifier' || t.kind === 'int' || t.kind === 'float' || t.kind === 'string') return true;
+  if (t.kind === 'keyword') return t.text === 'true' || t.text === 'false';
+  return t.kind === 'symbol' && (t.text === ')' || t.text === ']');
+}
+
+// Static type of the receiver of the `.` at token `dotIndex`: a plain variable, or the variable
+// `this` for a leading `.` (the game reads `.Name` as `this.Name`). Undefined when the receiver is
+// a call or another expression whose type is not computed yet.
+export function receiverType(analysis: Analysis, dotIndex: number): string | undefined {
+  const prev = analysis.tokens[dotIndex - 1];
+  if (!endsOperand(prev)) return analysis.variables.get('this')?.type;
+  if (prev.kind !== 'identifier') return undefined;
+  return analysis.variables.get(prev.text)?.type;
 }

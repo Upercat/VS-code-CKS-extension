@@ -19,7 +19,7 @@ import {
 } from 'vscode-languageserver/node';
 import { TextDocument } from 'vscode-languageserver-textdocument';
 import { findGameRoot, loadAiSymbols } from './analysis/aiSymbols';
-import { Analysis, Severity, analyze, tokenAt, variableTypeBefore } from './analysis/analyze';
+import { Analysis, Severity, analyze, receiverType, tokenAt } from './analysis/analyze';
 import { INT_CONSTANTS, TYPES, TYPE_BY_NAME, typeChain } from './analysis/builtins';
 import { KEYWORDS } from './analysis/lexer';
 import { Primitive, PrimitiveTable, formatArg, formatPrimitive } from './analysis/primitives';
@@ -188,13 +188,12 @@ connection.onCompletion((params): CompletionItem[] => {
   const offset = doc.offsetAt(params.position);
   const text = analysis.source;
 
-  // Member completion: `receiver.` or `receiver.partial`.
+  // Member completion: `receiver.`, `receiver.partial`, or a leading `.` on `this`.
   let dot = offset;
   while (dot > 0 && /[A-Za-z0-9_:]/.test(text[dot - 1])) dot--;
   if (text[dot - 1] === '.') {
-    const receiverIndex = tokenAt(analysis.tokens, dot - 2);
-    const receiver = analysis.tokens[receiverIndex];
-    const type = receiver && receiver.end <= dot - 1 ? variableTypeBefore(analysis, receiverIndex) : undefined;
+    const dotIndex = tokenAt(analysis.tokens, dot - 1);
+    const type = analysis.tokens[dotIndex]?.start === dot - 1 ? receiverType(analysis, dotIndex) : undefined;
     return [...groupByMember(methodsFor(type))].map(([member, overloads]) => ({
       label: member,
       kind: CompletionItemKind.Method,
@@ -205,7 +204,6 @@ connection.onCompletion((params): CompletionItem[] => {
 
   const items: CompletionItem[] = [];
   for (const k of KEYWORDS) items.push({ label: k, kind: CompletionItemKind.Keyword });
-  items.push({ label: 'this', kind: CompletionItemKind.Keyword });
   for (const t of TYPES) items.push({ label: t.name, kind: CompletionItemKind.Class, detail: t.parent ? `: ${t.parent}` : undefined });
   for (const v of analysis.variables.values()) {
     items.push({ label: v.name, kind: CompletionItemKind.Variable, detail: `${v.type} (${v.kind})` });
@@ -244,7 +242,7 @@ connection.onHover((params): Hover | null => {
 
   const prev = analysis.tokens[index - 1];
   if (prev?.text === '.') {
-    const type = variableTypeBefore(analysis, index - 2);
+    const type = receiverType(analysis, index - 1);
     const overloads = methodsFor(type).filter((p) => p.member === t.text);
     if (overloads.length) return md(primitiveDoc(overloads));
   }
@@ -290,7 +288,7 @@ connection.onSignatureHelp((params): SignatureHelp | null => {
 
   const isMember = tokens[open - 2]?.text === '.';
   const overloads = isMember
-    ? methodsFor(variableTypeBefore(analysis, open - 3)).filter((p) => p.member === callee.text)
+    ? methodsFor(receiverType(analysis, open - 2)).filter((p) => p.member === callee.text)
     : primitives.overloads(callee.text);
   if (!overloads.length) return null;
 
