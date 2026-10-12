@@ -4,3 +4,6 @@ out-private/
 private/
 *.vsix
 *.tsbuildinfo
+/*.png
+/*.jpg
+/*.jp2

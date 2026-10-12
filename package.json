@@ -2,6 +2,7 @@
   "name": "cks-language",
   "displayName": "%displayName%",
   "description": "%description%",
+  "icon": "images/icon.png",
   "version": "0.1.0",
   "publisher": "Upercat",
   "private": true,

@@ -9,3 +9,8 @@ tsconfig.json
 *.tsbuildinfo
 CONTRIBUTING.md
 .github/**
+*.png
+*.jpg
+*.jp2
+*.vsix
+!images/icon.png
