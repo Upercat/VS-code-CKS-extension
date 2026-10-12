@@ -3,7 +3,7 @@
   "displayName": "%displayName%",
   "description": "%description%",
   "icon": "images/icon.png",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publisher": "Upercat",
   "private": true,
   "license": "GPL-3.0-or-later",

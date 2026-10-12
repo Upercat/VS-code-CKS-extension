@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.2 (preview)
+
+- Revised function descriptions.
+
 ## 0.1.1 (preview)
 
 - Credits to David Campos Rodríguez and his [CKS reference](https://david-campos.com/cks/).
