@@ -1,0 +1,28 @@
+{
+  "Script signature": {
+    "prefix": "sig",
+    "body": ["// ${1:void}, ${2:int} ${3:nParam}", "$0"],
+    "description": "Signature comment on the first line: return type, then each parameter (`OUT` or `*` for by-reference)."
+  },
+  "if": {
+    "prefix": "if",
+    "body": ["if( ${1:cond} )", "{", "\t$0", "}"]
+  },
+  "if else": {
+    "prefix": "ife",
+    "body": ["if( ${1:cond} )", "{", "\t$2", "}", "else", "{", "\t$0", "}"]
+  },
+  "while": {
+    "prefix": "while",
+    "body": ["while( ${1:cond} )", "{", "\t$0", "}"]
+  },
+  "for": {
+    "prefix": "for",
+    "body": ["for( ${1:i} = 0; ${1:i} < ${2:n}; ${1:i} += 1 )", "{", "\t$0", "}"],
+    "description": "CKS has no ++: use += 1."
+  },
+  "Sleep loop": {
+    "prefix": "loop",
+    "body": ["while( true )", "{", "\t$0", "\tSleep( ${1:1000} );", "}"]
+  }
+}

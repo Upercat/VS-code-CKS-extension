@@ -1,0 +1,11 @@
+{
+  "displayName": "CKS (scripts de Imperivm)",
+  "description": "Soporte no oficial de la comunidad para los scripts CKS de Imperivm (.vs): coloreado, diagnósticos, autocompletado, ayuda al pasar el ratón y firmas de funciones.",
+  "command.openReference": "Abrir la referencia de CKS",
+  "config.docsLanguage": "Idioma de la documentación de las primitivas. \"auto\" sigue el idioma de VS Code; si falta una entrada se muestra la inglesa.",
+  "config.docsFile": "Archivo de documentación personal opcional (mismo formato que data/docs/primitives.<idioma>.json). Sus entradas se muestran antes que las incluidas.",
+  "config.primitivesFile": "Ruta a una tabla de primitivas (TSV: ordinal, nombre, retorno, argumentos). Vacío usa la incluida en data/primitives.tsv.",
+  "config.referenceWeb": "Página web de referencia que abre una primitiva con un ancla `#ordinal-xxxx`: un archivo .html local (se abre en un panel) o una URL http(s) (se abre en el navegador). Si se indica, el hover enlaza a ella.",
+  "config.gameRoot": "Carpeta del juego cuyo DATA/AI/AI.INI define las constantes de IA. Vacío usa la carpeta que contiene el DATA más cercano a cada script.",
+  "config.trace": "Registra la comunicación entre VS Code y el servidor de lenguaje CKS."
+}

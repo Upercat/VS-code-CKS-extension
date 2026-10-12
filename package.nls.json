@@ -1,0 +1,11 @@
+{
+  "displayName": "CKS (Imperivm scripts)",
+  "description": "Unofficial community language support for Imperivm CKS scripts (.vs): highlighting, diagnostics, completion, hover and signature help.",
+  "command.openReference": "Open the CKS reference",
+  "config.docsLanguage": "Language of the primitive documentation. \"auto\" follows the VS Code display language; missing entries fall back to English.",
+  "config.docsFile": "Optional personal documentation file (same format as data/docs/primitives.<language>.json). Its entries are shown before the bundled ones.",
+  "config.primitivesFile": "Path to a primitive table (TSV: ordinal, name, return, arguments). Empty uses the bundled data/primitives.tsv.",
+  "config.referenceWeb": "A reference web page that opens a primitive from an `#ordinal-xxxx` anchor: a local .html file (opened in a panel) or an http(s) URL (opened in the browser). When set, hovers link to it.",
+  "config.gameRoot": "Game folder whose DATA/AI/AI.INI defines the AI constants. Empty uses the parent of the nearest DATA folder above each script.",
+  "config.trace": "Traces the communication between VS Code and the CKS language server."
+}

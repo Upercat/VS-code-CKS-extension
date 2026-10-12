@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CKS primitive documentation",
+  "type": "object",
+  "required": ["language", "entries"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "language": { "type": "string", "description": "Language code: en, es, ..." },
+    "entries": {
+      "type": "object",
+      "description": "Key: `<ret> <Name>(<arg types>)` without the receiver, as shown in the hover (e.g. `void Obj::ExecCmd(str,point,Obj,bool)`), or a bare name (e.g. `Sleep`) for every overload.",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "summary": { "type": "string", "description": "What the primitive does, in one or two sentences." },
+          "notes": { "type": "string", "description": "Details: parameters, units, return value, pitfalls. Markdown." },
+          "examples": { "type": "array", "items": { "type": "string" }, "description": "Short CKS snippets." }
+        }
+      }
+    }
+  }
+}

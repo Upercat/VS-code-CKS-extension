@@ -1,0 +1,10 @@
+.vscode/**
+src/**
+private/**
+out-private/**
+out/tools/**
+**/*.map
+tsconfig.json
+.gitignore
+*.tsbuildinfo
+CONTRIBUTING.md

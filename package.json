@@ -1,0 +1,130 @@
+{
+  "name": "cks-language",
+  "displayName": "%displayName%",
+  "description": "%description%",
+  "version": "0.1.0",
+  "publisher": "imperivm-community",
+  "private": true,
+  "license": "GPL-3.0-or-later",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "keywords": [
+    "imperivm",
+    "cks",
+    "modding"
+  ],
+  "main": "./out/client/extension.js",
+  "activationEvents": [],
+  "contributes": {
+    "languages": [
+      {
+        "id": "cks",
+        "aliases": [
+          "CKS",
+          "cks"
+        ],
+        "extensions": [
+          ".vs"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "cks",
+        "scopeName": "source.cks",
+        "path": "./syntaxes/cks.tmLanguage.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "cks",
+        "path": "./snippets/cks.json"
+      }
+    ],
+    "jsonValidation": [
+      {
+        "fileMatch": "**/primitives.*.json",
+        "url": "./data/docs/primitives.schema.json"
+      }
+    ],
+    "commands": [
+      {
+        "command": "cks.openReference",
+        "title": "%command.openReference%",
+        "category": "CKS"
+      }
+    ],
+    "configuration": {
+      "title": "CKS",
+      "properties": {
+        "cks.docsLanguage": {
+          "type": "string",
+          "enum": [
+            "auto",
+            "en",
+            "es"
+          ],
+          "default": "auto",
+          "description": "%config.docsLanguage%"
+        },
+        "cks.docsFile": {
+          "type": "string",
+          "default": "",
+          "description": "%config.docsFile%"
+        },
+        "cks.primitivesFile": {
+          "type": "string",
+          "default": "",
+          "description": "%config.primitivesFile%"
+        },
+        "cks.referenceWeb": {
+          "type": "string",
+          "default": "",
+          "description": "%config.referenceWeb%"
+        },
+        "cks.gameRoot": {
+          "type": "string",
+          "default": "",
+          "description": "%config.gameRoot%"
+        },
+        "cks.trace.server": {
+          "type": "string",
+          "enum": [
+            "off",
+            "messages",
+            "verbose"
+          ],
+          "default": "off",
+          "description": "%config.trace%"
+        }
+      }
+    },
+    "configurationDefaults": {
+      "[cks]": {
+        "files.encoding": "windows1252",
+        "files.eol": "\r\n"
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -b",
+    "watch": "tsc -b -w",
+    "check-corpus": "node ./out/tools/checkCorpus.js",
+    "package": "npx @vscode/vsce package"
+  },
+  "dependencies": {
+    "vscode-languageclient": "^9.0.1",
+    "vscode-languageserver": "^9.0.1",
+    "vscode-languageserver-textdocument": "^1.0.12"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "@types/vscode": "^1.90.0",
+    "typescript": "^5.6.0"
+  }
+}

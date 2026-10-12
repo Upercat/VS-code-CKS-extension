@@ -1,0 +1,105 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "CKS",
+  "scopeName": "source.cks",
+  "patterns": [
+    { "include": "#signature" },
+    { "include": "#comments" },
+    { "include": "#strings" },
+    { "include": "#numbers" },
+    { "include": "#keywords" },
+    { "include": "#types" },
+    { "include": "#constants" },
+    { "include": "#member-call" },
+    { "include": "#call" },
+    { "include": "#operators" }
+  ],
+  "repository": {
+    "signature": {
+      "comment": "First line of a script: `// <ret>, <Type> <Name>, ...` declares the result and parameters.",
+      "begin": "\\A\\s*(//)",
+      "beginCaptures": { "1": { "name": "punctuation.definition.comment.cks" } },
+      "end": "$",
+      "name": "meta.signature.cks comment.line.double-slash.cks",
+      "patterns": [
+        { "include": "#types" },
+        { "match": "\\bOUT\\b", "name": "storage.modifier.out.cks" },
+        { "match": "\\*", "name": "storage.modifier.pointer.cks" },
+        { "match": "\\b[A-Za-z_][A-Za-z0-9_]*\\b", "name": "variable.parameter.cks" }
+      ]
+    },
+    "comments": {
+      "patterns": [
+        {
+          "begin": "/\\*",
+          "end": "\\*/",
+          "name": "comment.block.cks"
+        },
+        {
+          "begin": "//",
+          "end": "$",
+          "name": "comment.line.double-slash.cks"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "begin": "\"",
+          "end": "\"|$",
+          "name": "string.quoted.double.cks",
+          "patterns": [{ "include": "#escapes" }]
+        },
+        {
+          "begin": "'",
+          "end": "'|$",
+          "name": "string.quoted.single.cks",
+          "patterns": [{ "include": "#escapes" }]
+        }
+      ]
+    },
+    "escapes": {
+      "match": "\\\\(0x[0-9A-Fa-f]{1,4}|[0-9]+|[\"'?\\\\abfnrtv])",
+      "name": "constant.character.escape.cks"
+    },
+    "numbers": {
+      "patterns": [
+        { "match": "\\b0x[0-9A-Fa-f]+\\b", "name": "constant.numeric.hex.cks" },
+        { "match": "\\b[0-9]+\\.[0-9]*", "name": "constant.numeric.float.cks" },
+        { "match": "\\b[0-9]+\\b", "name": "constant.numeric.integer.cks" }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        { "match": "\\b(if|then|else|while|do|for|break|continue|return)\\b(?![A-Za-z0-9_:])", "name": "keyword.control.cks" },
+        { "match": "\\b(true|false)\\b(?![A-Za-z0-9_:])", "name": "constant.language.boolean.cks" },
+        { "match": "\\bthis\\b(?![A-Za-z0-9_:])", "name": "variable.language.this.cks" }
+      ]
+    },
+    "types": {
+      "match": "\\b(void|int|float|point|bool|rect|pstr|str|IntArray|StrArray|StrMap|Obj|Unit|Building|ObjList|Hero|Tower|Wagon|Settlement|ItemHolder|Conversation|Item|Query|Barrack|NamedObj|Druid|Ghost|Catapult|Sacrifice|SquadList|Squad|GAIKA|Gate|Teleport|Ship|Flying)\\b(?![A-Za-z0-9_:])",
+      "name": "storage.type.cks"
+    },
+    "constants": {
+      "match": "\\b(AI_[A-Z_]+|SF_[A-Z_]+|GS_NONE|ES_NONE|TS_NONE|UNITFLAG_NOAI|MaxGAIKAPriority|cEasy|cNormal|cHard|gs[A-Z][A-Za-z]*|GlobalSpellsCount|ts(Owned|Enemy|Disabled)|HeroSkillsCount|hs[A-Z][A-Za-z]*|dt(Slash|Pierce|Siege|None)|UnitSpecialsCount|Gaul|Rome|RepublicanRome|Carthage|Iberia|ImperialRome|Britain|Egypt|Germany)\\b(?![A-Za-z0-9_:])",
+      "name": "support.constant.cks"
+    },
+    "member-call": {
+      "match": "(\\.)\\s*([A-Za-z_][A-Za-z0-9_:]*)",
+      "captures": {
+        "1": { "name": "punctuation.accessor.cks" },
+        "2": { "name": "entity.name.function.member.cks" }
+      }
+    },
+    "call": {
+      "match": "\\b([A-Za-z_][A-Za-z0-9_:]*)\\s*(?=\\()",
+      "captures": { "1": { "name": "entity.name.function.cks" } }
+    },
+    "operators": {
+      "patterns": [
+        { "match": "\\+=|-=|==|!=|<=|>=|&&|\\|\\|", "name": "keyword.operator.cks" },
+        { "match": "[-+*/%<>&|!^=]", "name": "keyword.operator.cks" }
+      ]
+    }
+  }
+}

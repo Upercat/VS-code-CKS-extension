@@ -1,0 +1,1524 @@
+# ordinal	name	ret	args (comma separated, & = by reference)
+326	Sleep	void	int
+327	KillScript	void	
+329	+=	int	int&,int
+330	-=	int	int&,int
+331	&	int	int,int
+332	|	int	int,int
+333	+	int	int,int
+334	-	int	int,int
+335	-	int	int
+336	=	void	int&,int
+337	*	int	int,int
+338	/	int	int,int
+339	%	int	int,int
+340	==	bool	int,int
+341	!=	bool	int,int
+342	<	bool	int,int
+343	>	bool	int,int
+344	<=	bool	int,int
+345	>=	bool	int,int
+346	abs	int	int
+347	Write	void	int
+348	MIN	int	int,int
+349	MAX	int	int,int
+350	CLAMP	int	int,int,int
+351	+	float	float,float
+352	-	float	float,float
+353	-	float	float
+354	=	void	float&,float
+355	*	float	float,float
+356	/	float	float,float
+357	==	bool	float,float
+358	!=	bool	float,float
+359	<	bool	float,float
+360	>	bool	float,float
+361	sqrt	float	float
+362	Int	int	float
+363	Write	void	float
+364	MIN	float	float,float
+365	MAX	float	float,float
+366	CLAMP	float	float,float,float
+370	=	void	bool&,bool
+371	!	bool	bool
+372	&&	bool	bool,bool
+373	||	bool	bool,bool
+374	^	bool	bool,bool
+376	Write	void	pstr
+377	Write	void	str
+378	=	void	pstr&,pstr
+379	=	void	str&,str
+380	StrCmp	int	str,str
+381	StrCat	void	str&,str
+382	ParseStr	str	str,str&
+383	StrStr	bool	str,str
+384	GetFromStr	str	str,str
+385	GetFromStrToEOL	str	str,str
+386	+	str	str,str
+387	FindChrPos	int	str,int
+388	GetChr	int	str,int
+389	IsNull	bool	str
+390	StrLen	int	str
+391	StrMid	str	str,int,int
+392	Str2Int	int	str
+393	==	bool	str,str
+394	!=	bool	str,str
+395	IsFlagSet	bool	int,int
+396	SetFlag	int	int&,int,bool
+397	Point	point	int,int
+398	point::x	int&	point&
+399	point::y	int&	point&
+400	point::x	int	point
+401	point::y	int	point
+402	point::Set	point	point&,int,int
+403	point::SetLen	void	point&,int
+404	point::Len	int	point
+405	point::Rot	void	point&,int
+406	point::InRect	bool	point,rect
+407	point::IntoRect	void	point&,rect
+408	point::Dist	int	point,point
+409	+	point	point,point
+410	-	point	point,point
+411	*	point	point,int
+412	/	point	point,int
+413	Dist	int	point,point
+414	=	void	point&,point
+415	==	bool	point,point
+416	!=	bool	point,point
+417	rect::left	int	rect
+418	rect::top	int	rect
+419	rect::right	int	rect
+420	rect::bottom	int	rect
+421	rect::width	int	rect
+422	rect::height	int	rect
+423	rect::left	int&	rect&
+424	rect::top	int&	rect&
+425	rect::right	int&	rect&
+426	rect::bottom	int&	rect&
+427	rect::Set	void	rect&,int,int,int,int
+428	rect::Center	point	rect
+429	IntersectRects	rect	rect,rect
+430	AddRects	rect	rect,rect
+431	=	void	rect&,rect
+432	==	bool	rect,rect
+433	!=	bool	rect,rect
+434	=	void	IntArray&,IntArray&
+435	[	int&	IntArray&,int
+436	IntArray::resize	void	IntArray&,int
+437	IntArray::size	int	IntArray&
+438	IntArray::find	int	IntArray&,int
+439	=	void	StrArray&,StrArray&
+440	[	str&	StrArray&,int
+441	StrArray::resize	void	StrArray&,int
+442	StrArray::size	int	StrArray&
+443	StrArray::find	int	StrArray&,str
+444	=	void	StrMap&,StrMap&
+445	[	str&	StrMap&,str
+446	StrMap::size	int	StrMap&
+447	StrMap::erase	void	StrMap&,str
+448	StrMap::exists	bool	StrMap&,str
+449	DumpStack	void	
+450	DumpCode	void	int
+451	GetMapSize	point	
+452	_RandomTerrain2	void	str filename
+453	=	void	Obj&,Obj
+454	=	void	Item&,Item
+455	==	bool	Obj,Obj
+456	!=	bool	Obj,Obj
+458	Obj::Clear	void	Obj&
+459	Obj::AsUnit	Unit	Obj
+460	Obj::AsBuilding	Building	Obj
+461	Obj::AsHero	Hero	Obj
+462	Obj::AsDruid	Druid	Obj
+463	Obj::AsGhost	Ghost	Obj
+464	Obj::AsTower	Tower	Obj
+465	Obj::AsWagon	Wagon	Obj
+466	Obj::AsCatapult	Catapult	Obj
+467	Obj::AsItemHolder	ItemHolder	Obj
+468	Obj::AsBarrack	Barrack	Obj
+469	Obj::AsSacrifice	Sacrifice	Obj
+470	Obj::AsShip	Ship	Obj
+471	Obj::AsFlying	Flying	Obj
+472	GetClassRace	int	str
+473	Obj::race	int	Obj
+474	Obj::raceStr	str	Obj
+475	Obj::raceStrPref	str	Obj
+476	Obj::raceStrPrefLow	str	Obj
+477	GetRaceStr	str	int
+478	GetRaceStrPref	str	int
+479	GetRaceStrPrefLow	str	int
+480	Obj::armor_slash	int	Obj
+481	Obj::armor_pierce	int	Obj
+482	Obj::health	int	Obj
+483	Obj::stamina	int	Obj
+484	Obj::maxhealth	int	Obj
+485	Obj::maxstamina	int	Obj
+486	Obj::sight	int	Obj
+487	Obj::pos	point	Obj
+488	Obj::posRH	point	Obj
+489	Obj::damage	int	Obj
+490	Obj::attack	int	Obj
+491	Obj::damage_type	int	Obj
+492	Obj::range	int	Obj
+493	Obj::min_range	int	Obj
+494	Obj::radius	int	Obj
+495	Obj::name	str	Obj
+496	Obj::IsHeirOf	bool	Obj,str
+497	Obj::IsSentry	bool	Obj
+498	Obj::IsGate	bool	Obj
+499	Obj::IsRam	bool	Obj
+500	Obj::IsRanged	bool	Obj
+501	Obj::IsMilitary	bool	Obj
+502	Obj::IsReligious	bool	Obj
+503	Obj::IsPeaceful	bool	Obj
+504	Obj::IsPeasant	bool	Obj
+505	Obj::IsPeasantAmbient	bool	Obj
+506	Obj::SetHealth	void	Obj,int
+507	Obj::SetMaxHealth	void	Obj,int
+508	Obj::SetStamina	void	Obj,int
+509	Obj::SetMaxStamina	void	Obj,int
+510	Obj::SetSight	void	Obj,int
+511	Obj::GetStaminaDecTime	int	Obj
+512	Obj::CmdCount	int	Obj
+513	Obj::CmdCount	int	Obj,str
+514	Obj::ClearCommands	void	Obj
+515	Obj::KillCommand	void	Obj
+516	Obj::AddCommand	void	Obj,bool,str
+517	Obj::AddCommand	void	Obj,bool,str,point
+518	Obj::AddCommand	void	Obj,bool,str,Obj
+519	Obj::SneakCommand	void	Obj,str
+520	Obj::SetCommand	void	Obj,str
+521	Obj::SetCommand	void	Obj,str,point
+522	Obj::SetCommand	void	Obj,str,Obj
+523	Obj::ExecDefaultCmd	void	Obj,point,Obj,bool,bool
+524	Obj::ExecCmd	void	Obj,str,point,Obj,bool
+525	Obj::CmdDisable	void	Obj,str
+526	Obj::CmdEnable	void	Obj,str
+527	Obj::IsValid	bool	Obj
+528	Item::IsValid	bool	Item
+529	Obj::DistTo	int	Obj,point
+530	Obj::DistTo	int	Obj,Obj
+531	Obj::IsEnemy	bool	Obj,Obj
+532	Obj::IsAlive	bool	Obj
+533	Obj::IsDead	bool	Obj
+534	Obj::IsValidTarget	bool	Obj,Obj
+535	Obj::IsValidCaptureTarget	bool	Obj,Obj
+536	Obj::SetVisible	void	Obj,bool
+537	Obj::IsVisible	bool	Obj
+538	Obj::SetMessengerStatus	void	Obj,bool
+539	Obj::CanSee	bool	Obj,Obj
+540	Obj::CanAttack	bool	Obj,Obj
+541	Obj::Erase	void	Obj
+542	Obj::player	int	Obj
+543	Obj::SetPlayer	void	Obj,int
+544	Obj::Damage	bool	Obj,int
+545	Obj::Heal	void	Obj,int
+546	Obj::HealStamina	void	Obj,int
+547	Obj::SetPos	void	Obj,point
+548	Obj::SetPosSimple	void	Obj,point
+549	Obj::SetBlind	void	Obj,bool
+550	Obj::Face	void	Obj,point
+551	Obj::GetDir	point	Obj
+552	Obj::Progress	void	Obj
+553	Obj::Progress	void	Obj,int
+554	Obj::cmddelay	int	Obj
+555	Obj::IsInGroup	bool	Obj,str
+556	Obj::AddToGroup	void	Obj,str
+557	Obj::RemoveFromGroup	void	Obj,str
+558	Obj::RemoveFromAllGroups	void	Obj
+559	Obj::SetName	void	Obj,str
+560	Obj::Select	void	Obj,int
+561	Obj::Deselect	void	Obj,int
+562	Obj::Deselect	void	Obj
+563	ClearSelection	void	int
+564	Obj::PlayAnim	void	Obj,int,point
+565	Obj::GetAnimTime	int	Obj,int
+566	Obj::StartAnim	void	Obj,int,point
+567	Obj::StartDelayedAnim	void	Obj,int,point,int
+568	Obj::TimeToActionMoment	int	Obj
+569	Obj::TimeToAnimFinish	int	Obj
+570	Obj::GetAnim	int	Obj
+571	Obj::SetState	void	Obj,int
+572	Obj::AddItem	bool	Obj,str
+573	Obj::GiveItem	bool	Obj,Item,Obj
+574	Obj::OpenItemHolder	bool	Obj,ItemHolder
+575	Obj::PutItem	bool	Obj,Item,ItemHolder
+576	Obj::DropItem	bool	Obj,Item,point
+577	Obj::FindItem	Item	Obj,str
+578	Obj::RemoveItem	void	Obj,int
+579	Obj::RemoveItem	void	Obj,str
+580	Obj::RemoveAllItems	void	Obj
+581	Obj::ExchangeItem	bool	Obj,Item,str
+582	Obj::GetItem	Item	Obj,int
+583	Obj::RemoveItemsOfType	int	Obj,str
+584	Obj::GetItemIndex	int	Obj,Item
+585	Obj::items_count	int	Obj
+586	Obj::free_item_slots	int	Obj
+587	Obj::item_count	int	Obj
+588	Obj::max_items	int	Obj
+589	Obj::ClipDestToMap	point	Obj,point
+590	Obj::pr	void	Obj,str
+591	Obj::pr	void	Obj,int
+592	Obj::pr	void	Obj,Obj
+593	Obj::GetDebug	bool	Obj
+594	Obj::SetDebug	void	Obj,bool
+595	Obj::class	str	Obj
+596	Obj::command	str	Obj
+597	Obj::command	str	Obj,int
+598	cmdparam	str	
+599	cmdwaiting	str	
+600	rollover	str	
+601	rollover	str	Obj,bool
+602	rollover	str	Obj,str,bool
+603	rollover	str	Obj,str
+604	rollover_desc	str	Obj,str,bool
+605	cmdcost_gold	int	
+606	cmdcost_food	int	
+607	cmdcost_pop	int	
+608	cmdcost_stamina	int	
+609	GetPlayerRace	int	int
+610	Obj::_LastSelectionTime	int	Obj
+611	_GetSelection	ObjList	
+612	ClearDebug	void	
+613	Place	Obj	str,point,int
+614	PlaceInHolder	Obj	str,str,int
+615	_PlaceEx	Obj	str cls,int x,int y,int player
+616	_PlaceBlockEx	void	str cls,int player,int x,int y,int nx,int ny,int deltax,int deltay
+617	_PlaceBlockEx	void	str cls,int player,int x,int y,int nx,int ny,int deltax,int deltay,str group
+618	_Summon	void	str cls,int x,int y,int player
+619	Obj::IsWaterUnit	bool	Obj
+620	Obj::SetCmdEnable	void	Obj,bool
+621	Obj::GetCmdEnable	bool	Obj
+622	Obj::AddToStoreBin	void	Obj
+623	Obj::RemoveFromStoreBin	void	Obj
+624	Obj::IsInState	bool	Obj
+625	Obj::PlaySound	void	Obj,str
+626	Obj::ShowFloatText	void	Obj,str
+628	Group	Query	str
+629	GetGroupSize	int	str
+630	SpawnGroup	ObjList	str
+631	SpawnGroupInHolder	ObjList	str,str
+632	SpawnGroupInHolder	ObjList	str,Obj
+633	SpawnNamed	Obj	str
+634	ModLevel	void	str,int,int,int
+635	Union	Query	Query,Query
+636	Intersect	Query	Query,Query
+637	Substract	Query	Query,Query
+638	Subtract	Query	Query,Query
+639	ClassPlayerAreaObjs	Query	str,int,str
+640	ClassPlayerObjs	Query	str,int
+641	BuildingsInSettlement	Query	str,str
+642	UnitsInSettlement	Query	str,str
+643	UnitsAroundSettlement	Query	str,str
+644	UnitsGuardingSettlement	Query	str,str
+645	UnitsInSettlement	Query	Settlement,str
+646	UnitsAroundSettlement	Query	Settlement,str
+647	UnitsGuardingSettlement	Query	Settlement,str
+648	EnemyObjs	Query	int,str
+649	FriendlyObjs	Query	int,str
+650	ControllableObjs	Query	int,str
+651	AreaObjs	Query	str,str
+652	ObjsInRect	Query	rect,str
+653	ObjsInCircle	Query	point,int,str
+654	ObjsInSight	Query	Obj,str
+655	VisibleObjsInSight	Query	Obj,str
+656	ObjsInRange	Query	Obj,str,int
+657	AttachedUnits	Query	Hero,str
+658	PartyQuery	Query	
+659	Query::Erase	void	Query
+660	Query::SetPlayer	void	Query,int
+661	Query::Damage	int	Query,int
+662	Query::Heal	void	Query,int
+663	Query::HealStamina	void	Query,int
+664	Query::AddDefCmd	void	Query,point,Obj,bool,bool
+665	Query::IsValid	bool	Query
+666	=	void	Query&,Query
+667	Query::count	int	Query
+668	Query::IsEmpty	bool	Query
+669	Query::Contains	bool	Query,Obj
+670	Query::ClearCommands	void	Query
+671	Query::KillCommand	void	Query
+672	Query::AddCommand	void	Query,bool,str
+673	Query::AddCommand	void	Query,bool,str,point
+674	Query::AddCommand	void	Query,bool,str,Obj
+675	Query::AddCommandOffset	void	Query,bool,str,point
+676	Query::SetCommand	void	Query,str
+677	Query::SetCommand	void	Query,str,point
+678	Query::SetCommand	void	Query,str,Obj
+679	Query::SetCommandOffset	void	Query,str,point
+680	Query::GetObjList	ObjList	Query
+681	DistributeExperience	void	Query,int
+682	AttackArea	void	Query,str
+683	MoveToArea	void	Query,str
+684	NearestObj	Obj	Query,point
+685	NearestObj	Obj	Query,Obj
+686	Query::NearestObj	Obj	Query,point
+687	Query::NearestObj	Obj	Query,Obj
+688	Query::AddToGroup	void	Query,str
+689	Query::RemoveFromGroup	void	Query,str
+690	Query::RemoveFromAllGroups	void	Query
+691	Query::Face	void	Query,point
+692	Query::SetFood	void	Query,int
+693	Query::InHolder	int	Query,str
+694	Query::AddToHolder	void	Query,str
+695	Query::GetAverageDirection	point	Query
+696	Query::SetParty	void	Query,bool
+697	Query::SetMessengerStatus	void	Query,bool
+698	Query::SetFeeding	void	Query,bool
+699	GetNamedObj	NamedObj	str
+701	NamedObj::IsValid	bool	NamedObj
+702	NamedObj::IsDead	bool	NamedObj
+703	NamedObj::obj	Obj	NamedObj
+704	EnemyInRange	bool	point,int,Obj
+705	Building::BestTarget	Obj	Building
+706	Building::Attack	bool	Building,Obj
+707	Building::GetEnterPoint	point	Building,Unit
+708	Building::GetExitPoint	point	Building,Obj,point
+709	Building::GetExitPoint	point	Building,point,bool
+710	Building::GetPoint	point	Building,int,int
+711	Building::settlement	Settlement	Building
+712	Building::IsBroken	bool	Building
+713	Building::IsCentralBuliding	bool	Building
+714	Building::RRepair	void	Building
+715	Building::GetExitVector	point	Building
+716	Building::PopTransportationUI	void	Building
+717	Building::GetGlobalSpell	int	Building
+718	Building::GlobalSpellStart	void	Building,int,int
+719	Building::GlobalSpellStart	void	Building,int,int,int
+720	Building::GlobalSpellStop	void	Building
+721	Building::SetGlobalSpellData	void	Building,int
+722	Building::WindOfWisdom	void	Building,int
+723	Building::Starvation	void	Building
+724	Building::SoothingRain	void	Building,int
+725	Building::DivineSacrifice	void	Building
+726	Building::GetSoothingRainObjects	int	Building
+727	Building::IsStonehengeControlable	bool	Building
+728	Building::StonehengeNumControllingMages	int	Building
+729	Building::itemtypes	str	Building
+730	Building::minlevel	int	Building
+731	Building::levelperitem	int	Building
+732	Building::ClearDamageTaken	void	Building
+733	Building::CountMages	int	Building
+734	Building::SetUITarget	void	Building,Obj
+735	Building::GetUITarget	Obj	Building
+736	Building::GetNumSentrySlots	int	Building
+737	Building::GetSentryClassName	str	Building
+738	Building::Research	void	Building,str
+739	GetResearchHack	bool	
+740	PlaceCatapult	Catapult	int,int,int,int
+741	Catapult::IsBuilt	bool	Catapult
+742	Catapult::SetBuilt	void	Catapult
+743	Catapult::SetBuildFrame	void	Catapult,int
+744	GetCatapultAttackPoint	point	point
+745	Catapult::RotateTo	void	Catapult,point
+746	Catapult::Attack	void	Catapult,point
+747	Catapult::BestTarget	Obj	Catapult
+748	Catapult::GetPointOnTarget	point	Catapult,Obj
+749	Catapult::InRange	bool	Catapult,point
+750	Catapult::AttackWait	int	Catapult
+751	Catapult::CalcEscapeDirection	point	Catapult
+752	Catapult::GetCurrentTarget	Obj	Catapult
+753	Catapult::SetTarget	void	Catapult,Obj
+754	Catapult::ClearTarget	void	Catapult
+755	Catapult::ClearTowerTarget	void	Catapult
+756	Unit::speed	int	Unit
+757	Unit::speed_factor	int	Unit
+758	Unit::stamina	int	Unit
+759	Unit::user	int	Unit
+760	Unit::food	int	Unit
+761	Unit::maxfood	int	Unit
+762	Unit::maxstamina	int	Unit
+763	Unit::experience	int	Unit
+764	Unit::level	int	Unit
+765	Unit::inherentlevel	int	Unit
+766	Unit::SetSpeedFactor	void	Unit,int
+767	Unit::SetUser	void	Unit,int
+768	Unit::SetFood	void	Unit,int
+769	Unit::feeds	bool	Unit
+770	Unit::SetFeeding	void	Unit,bool
+771	Unit::Goto	bool	Unit,point,int,int,bool,int
+772	Unit::GotoEnter	bool	Unit,point,int,int,bool,int
+773	Unit::Goto	bool	Unit,Obj,int,int,bool,int
+774	Unit::GotoAttack	bool	Unit,Obj,int,bool,int
+775	Unit::GotoStraight	void	Unit,point
+776	Unit::Stop	bool	Unit,int
+777	Unit::HasPath	bool	Unit
+778	Unit::dest	point	Unit
+779	Unit::TimeWithoutWalking	int	Unit
+780	Unit::InHolder	bool	Unit
+781	Unit::GetHolderSett	Settlement	Unit
+782	Unit::InShip	bool	Unit
+783	Unit::GetShip	Ship	Unit
+784	Unit::ExitHolder	void	Unit,point
+785	Unit::EnterHolder	void	Unit,Obj
+786	Unit::GetUnitsInSameHolder	ObjList	Unit
+787	Unit::TrainAttack	bool	Unit,Obj
+788	Unit::BestTrainingTarget	Obj	Unit
+789	Unit::StartTraining	void	Unit
+790	Unit::StopTraining	void	Unit
+791	Unit::IsTraining	bool	Unit
+792	Unit::Attack	bool	Unit,Obj
+793	Unit::AttackEveryone	bool	Unit,Obj
+794	Unit::TimeWithoutAttack	int	Unit
+795	Unit::SetLastAttackTime	void	Unit
+796	Unit::BestTargetInSquadSightMisZeroDamage	Obj	Unit
+797	Unit::BestTargetInSquadSight	Obj	Unit
+798	Unit::BestNoIndependentTargetInSquadSight	Obj	Unit
+799	Unit::BestTargetInSquadSight	Obj	Unit,str
+800	Unit::BestTargetInSquadSightExclusive	Obj	Unit,str
+801	Unit::BestTargetInSquadSight_PreferUndiseased	Obj	Unit
+802	Unit::BestTargetForPos	Obj	Unit
+803	Unit::BestTargetInRange	Obj	Unit,point,int
+804	Unit::IsEnemyInSquadSight	bool	Unit
+805	Unit::EnemiesInSight	bool	Unit
+806	Unit::InRange	bool	Unit,Obj
+807	Unit::hero	Hero	Unit
+808	Unit::AttachTo	bool	Unit,Hero
+809	Unit::DetachFrom	void	Unit,Hero
+810	Unit::Idle	void	Unit,int
+811	Unit::Taunt	void	Unit,int
+812	Unit::SetExperience	void	Unit,int
+813	Unit::SetLevel	void	Unit,int
+814	Unit::IncKills	void	Unit,int
+815	Unit::FormAcceptMove	void	Unit
+816	Unit::FormKeepMoving	void	Unit,int
+817	Unit::PathTo	int	Unit,point,int,int
+818	Unit::PathTo	int	Unit,Obj,int,int
+819	Unit::SetParty	void	Unit,bool
+820	Unit::GetParty	bool	Unit
+821	Unit::GetSacrifice	Sacrifice	Unit
+822	Unit::_OnImpassable	bool	Unit
+823	max_train_1_level	int	
+824	Unit::GetUnexploredPoint	point	Unit,int
+825	Unit::HasFreedom	bool	Unit
+826	Unit::GetFlags	bool	Unit,int
+827	Unit::PathLeft	int	Unit
+828	Unit::GetShipToBoard	Ship	Unit
+829	Unit::GetStaminaDecTime	int	Unit
+830	Unit::SameHolderAs	bool	Unit,Unit
+831	SetExperienceModifier	void	int,int
+832	GetExperienceModifier	int	int
+833	Unit::SetCommanded	void	Unit,bool
+834	Unit::GetCommanded	bool	Unit
+835	Unit::SetEntering	void	Unit,bool
+836	Unit::GetEntering	bool	Unit
+837	Unit::SetWalkAnim	void	Unit,int
+838	Unit::SetWalkAnim	void	Unit
+839	Unit::SetCarryWaterAnim	void	Unit
+840	Unit::SetCarryGoodsAnim	void	Unit
+841	Unit::DoCarryNothing	bool	Unit
+842	Unit::Disappear	void	Unit
+843	Unit::SetNoselectFlag	void	Unit,bool
+844	Unit::SetMinimapFlag	void	Unit,bool
+845	Unit::SetNoAIFlag	void	Unit,bool
+846	Unit::PathDestFound	point	Unit
+847	Unit::ForceIdle	void	Unit
+848	Unit::Talk	void	Unit
+849	Unit::IsCursed	bool	Unit
+850	Unit::IsDiseased	bool	Unit
+851	Unit::GetBestCurseTarget	Unit	Unit
+852	Unit::GetBuilding	Building	Unit
+853	Unit::SetBuilding	void	Unit,Building
+854	Unit::HasSpecial	bool	Unit,int
+855	Unit::SetSpecial	void	Unit,int,bool
+856	Unit::SpecialName	str	Unit,int
+857	Unit::GetParryMode	int	Unit
+858	Unit::SetParryMode	void	Unit,bool
+859	Unit::Curse	void	Unit
+860	Unit::Bless	void	Unit
+861	Unit::Disease	void	Unit
+862	Unit::RamBestTarget	Obj	Unit
+863	GetPlayerUnits	ObjList	int
+864	GetPlayerUnits	ObjList	int,str
+865	InvalidateRegenConsts	void	
+866	Unit::Mutate	void	Obj,str
+867	ExpFromLevel	int	int
+868	LevelFromExp	int	int
+869	Hero::FormKeepMoving	void	Hero,int
+870	Hero::FormSetupAndMoveTo	void	Hero,point,int,int,bool
+871	Hero::FormSetupAndMoveTo	void	Hero,Obj,int,int,bool
+872	Hero::TimePastLastAttack	int	Hero
+873	Hero::LastAttacker	Obj	Hero
+874	Hero::army	ObjList	Hero
+875	Hero::maxarmy	int	Hero
+876	Hero::IsHeroArmyFull	bool	Hero
+877	Hero::FormRadius	int	Hero
+878	Hero::FormPathLeft	int	Hero
+879	Hero::HasArmy	bool	Hero
+880	Hero::SetFormation	void	Hero,str
+881	Hero::formation	str	Hero
+882	Hero::DetachArmy	void	Hero
+883	GetRandomHeroClass	str	str,int
+884	Hero::CancelArmyBoard	void	Hero
+885	Hero::SetFinalPartyOrientation	void	Hero,point
+886	Hero::GetFinalPartyOrientation	point	Hero
+887	Hero::HasFinalPartyOrientationRequest	bool	Hero
+888	HeroSkillId	int	str
+889	Hero::SetSkill	void	Hero,int,int
+890	Hero::GetSkill	int	Hero,int
+891	Hero::UseSkill	bool	Hero,int
+892	HeroSkillName	str	int
+893	Hero::AvailableSkillPoints	int	Hero
+894	Hero::SkillInEffect	bool	Hero,int
+895	Hero::autocast	bool	Hero
+896	Hero::SetAutocast	void	Hero,bool
+897	Druid::FindUnitToHeal	Unit	Druid
+898	Druid::FindUnitToLearn	Unit	Druid
+899	Druid::FindUnitToHide	Unit	Druid
+900	Druid::GetBestCrippleTarget	Unit	Unit
+901	Druid::FindUnitToRevitalize	Unit	Druid
+902	Druid::FindUnitBelowILevel	Unit	Druid,int
+903	Druid::FindUnitBelowILevel	Unit	Druid,int,int
+904	Druid::SetStonehenge	void	Druid,Building
+905	Druid::GetJupiterAngerTarget	Unit	Druid
+906	Druid::SetJupiterAngerTarget	void	Druid,Unit
+907	Druid::SetSummoningDeath	void	Druid,bool
+908	Druid::IsSummoningDeath	bool	Druid
+909	_ScriptEditor	void	
+910	_ScriptEditor	void	str
+911	_DialogEditor	void	
+912	_DialogEditor	void	str
+913	_de	void	
+914	_Choose	str	str,str
+915	_ListClasses	str	
+916	_ListFolder	str	str
+917	_ListFolderEx	str	str,str
+918	_ListTerrains	str	
+919	MiniMap	void	
+920	SetMiniMapRect	void	rect
+921	BuildMiniMap	void	str
+922	ToggleZoomMap	void	
+923	ShowZoomMap	void	
+924	HideZoomMap	void	
+925	_ZoomMapLastShownTime	int	
+926	Wagon::amount	int	Wagon
+927	Wagon::restype	int	Wagon
+928	Wagon::SetFood	void	Wagon,int
+929	Wagon::SetGold	void	Wagon,int
+930	Wagon::LoadFood	void	Wagon,int
+931	Wagon::LoadGold	void	Wagon,int
+932	Wagon::loyalty	int	Wagon
+933	Wagon::SetLoyalty	void	Wagon,int
+934	Wagon::DecreaseLoyalty	void	Wagon,int
+935	Wagon::StartCapture	void	Wagon
+936	Wagon::StopCapture	void	Wagon
+937	==	bool	Settlement,Settlement
+938	=	void	Settlement&,Settlement
+939	GetSettlement	Settlement	str
+940	Settlement::population	int	Settlement
+941	Settlement::max_population	int	Settlement
+942	Settlement::name	str	Settlement
+943	Settlement::ForceAddUnit	void	Settlement,Unit
+944	Settlement::AddUnit	bool	Settlement,Unit
+945	Settlement::IsFull	bool	Settlement
+946	Settlement::AddUnits	int	Settlement,ObjList
+947	Settlement::Units	ObjList	Settlement
+948	Settlement::UnitsCount	int	Settlement
+949	Settlement::max_units	int	Settlement
+950	Settlement::health	int	Settlement
+951	Settlement::max_health	int	Settlement
+952	Settlement::stamina	int	Settlement
+953	Settlement::max_stamina	int	Settlement
+954	Settlement::loyalty	int	Settlement
+955	Settlement::SetLoyalty	void	Settlement,int
+956	Settlement::DecreaseLoyalty	void	Settlement,int
+957	Settlement::gold	int	Settlement
+958	Settlement::max_gold	int	Settlement
+959	Settlement::food	int	Settlement
+960	Settlement::max_food	int	Settlement
+961	Settlement::SetGold	void	Settlement,int
+962	Settlement::SetFood	void	Settlement,int
+963	Settlement::SetPopulation	void	Settlement,int
+964	Settlement::AddToPopulation	void	Settlement,int
+965	Settlement::AddToMaxPopulation	void	Settlement,int
+966	Settlement::player	int	Settlement
+967	Settlement::SetPlayer	void	Settlement,int
+968	Settlement::IsValid	bool	Settlement
+969	Settlement::loan	int	Settlement
+970	Settlement::SetLoan	void	Settlement,int
+971	Settlement::GetCentralBuilding	Building	Settlement
+972	Settlement::FoodProduction	int	Settlement
+973	Settlement::GoldProduction	int	Settlement
+974	Settlement::SetFoodProduction	void	Settlement,int
+975	Settlement::SetGoldProduction	void	Settlement,int
+976	Settlement::Buildings	ObjList	Settlement
+977	Settlement::Find	Building	Settlement,str
+978	Settlement::FirstBldClass	str	Settlement
+979	Settlement::CanBeCaptured	bool	Settlement,Unit
+980	Settlement::AllowCapture	void	Settlement,bool
+981	Settlement::ObjectsAround	ObjList	Settlement,str
+982	Building::GetEnterExit	point	Building
+983	Building::GetWaterSource	point	Building
+984	Building::GetGoodsSource	point	Building
+985	Building::GetFixSite	point	Building
+986	Settlement::GetEnterExit	Building	Settlement
+987	Settlement::GetWaterSource	Building	Settlement
+988	Settlement::GetGoodsSource	Building	Settlement
+989	Settlement::GetFixSite	Building	Settlement
+990	Settlement::MostDamagedBuilding	Building	Settlement
+991	Settlement::ClearDamageTaken	void	Settlement
+992	Settlement::FindNearEnterExit	point	Settlement,point
+993	Settlement::IsCity	bool	Settlement
+994	Settlement::PopulationDied	int	Settlement
+995	Settlement::GoldConverted	void	Settlement,int
+996	Settlement::GoldSpent	void	Settlement,int
+997	Settlement::GetSentry	int	Settlement
+998	Settlement::PutSentry	void	Settlement
+999	Settlement::DelSentry	void	Settlement
+1000	Settlement::GetNumSentries	int	Settlement
+1001	Settlement::AddSentries	void	Settlement,int
+1002	Settlement::GetMaxSentries	int	Settlement
+1003	Settlement::AddMaxSentries	void	Settlement,int
+1004	Settlement::EvalSentries	int	Settlement
+1005	ItemHolder::AddItem	bool	ItemHolder,str
+1006	ItemHolder::count	int	ItemHolder
+1007	ItemHolder::HasItem	bool	ItemHolder,str
+1008	ItemHolder::RemoveItem	void	ItemHolder,str
+1009	ItemHolder::RemoveAll	void	ItemHolder
+1010	Settlement::CreateMuleFood	Wagon	Settlement,int
+1011	Settlement::CreateMuleGold	Wagon	Settlement,int
+1012	Settlement::CreateBoatFood	Wagon	Settlement,int
+1013	Settlement::CreateBoatGold	Wagon	Settlement,int
+1014	Settlement::CreateShip	Ship	Settlement,str
+1015	Settlement::SendMule	void	Settlement
+1016	Settlement::SendBoat	void	Settlement
+1017	Settlement::StartSupplyFood	void	Settlement,Settlement
+1018	Settlement::StopSupply	void	Settlement
+1019	Settlement::UnloadWagon	void	Settlement,Wagon
+1020	Settlement::supplied	Settlement	Settlement
+1021	=	void	ObjList&,ObjList
+1022	ObjList::count	int	ObjList
+1023	[	Obj	ObjList,int
+1024	ObjList::Contains	bool	ObjList,Obj
+1025	ObjList::Add	void	ObjList,Obj
+1026	ObjList::Remove	void	ObjList,Obj
+1027	ObjList::ClearDead	void	ObjList
+1028	ObjList::AddList	void	ObjList,ObjList
+1029	ObjList::RemoveList	void	ObjList,ObjList
+1030	ObjList::Clear	void	ObjList
+1031	ObjList::AddToGroup	void	ObjList,str
+1032	ObjList::RemoveFromGroup	void	ObjList,str
+1033	ObjList::RemoveFromAllGroups	void	ObjList
+1034	ObjList::KillCommand	void	ObjList
+1035	ObjList::ClearCommands	void	ObjList
+1036	ObjList::AddCommand	void	ObjList,bool,str
+1037	ObjList::AddCommand	void	ObjList,bool,str,point
+1038	ObjList::AddCommand	void	ObjList,bool,str,Obj
+1039	ObjList::AddCommandOffset	void	ObjList,bool,str,point
+1040	ObjList::ExecDefaultCmd	void	ObjList,point,Obj,bool,bool
+1041	ObjList::ExecCmd	void	ObjList,str,point,Obj,bool
+1042	ObjList::SetCommand	void	ObjList,str
+1043	ObjList::SetCommand	void	ObjList,str,point
+1044	ObjList::SetCommand	void	ObjList,str,Obj
+1045	ObjList::SetCommandOffset	void	ObjList,str,point
+1046	ObjList::GetCanExecCmd	ObjList	ObjList,str
+1047	ObjList::FilterClosest	ObjList	ObjList,point,int
+1048	ObjList::Face	void	ObjList,point
+1049	ObjList::SetFood	void	ObjList,int
+1050	ObjList::SetPlayer	void	ObjList,int
+1051	ObjList::InHolder	int	ObjList,str
+1052	ObjList::AddToHolder	void	ObjList,str
+1053	ObjList::SetVisible	void	ObjList,bool
+1054	ObjList::ObjPlayer	ObjList	ObjList,int
+1055	ObjList::ObjEnemy	ObjList	ObjList,int
+1056	ObjList::ObjAlly	ObjList	ObjList,int
+1057	ObjList::ObjClass	ObjList	ObjList,str
+1058	ObjList::ObjSpecial	void	ObjList,int
+1059	ObjList::ObjInjured	ObjList	ObjList
+1060	ObjList::ObjFullStamina	ObjList	ObjList
+1061	ObjList::Find	Obj	ObjList,str
+1062	ObjList::FindAlly	Obj	ObjList,int,str
+1063	ObjList::FindEnemy	Obj	ObjList,int,str
+1064	Conversation::Init	void	Conversation&,str
+1065	Conversation::SetActor	void	Conversation,str,Unit
+1066	Conversation::SetDefActor	void	Conversation,str,str
+1067	ActorPresent	bool	str
+1068	ConvResult	str	str
+1069	ConvSetResult	void	str,str
+1070	Conversation::Run	void	Conversation&
+1071	RunConv	str	str
+1072	_ListConvs	str	
+1073	EnvWriteString	void	str key,str val
+1074	EnvWriteInt	void	str key,int val
+1075	EnvReadString	str	str key
+1076	EnvReadInt	int	str key
+1077	EnvWriteObj	void	str key,Obj o
+1078	EnvReadObj	Obj	str key
+1079	EnvWriteString	void	Settlement set,str key,str val
+1080	EnvWriteInt	void	Settlement set,str key,int val
+1081	EnvReadString	str	Settlement set,str key
+1082	EnvReadInt	int	Settlement set,str key
+1083	EnvWriteObj	void	Settlement set,str key,Obj o
+1084	EnvReadObj	Obj	Settlement set,str key
+1085	EnvWriteString	void	Building bld,str key,str val
+1086	EnvWriteInt	void	Building bld,str key,int val
+1087	EnvReadString	str	Building bld,str key
+1088	EnvReadInt	int	Building bld,str key
+1089	EnvWriteObj	void	Building bld,str key,Obj o
+1090	EnvReadObj	Obj	Building bld,str key
+1091	EnvWriteString	void	int plr,str key,str val
+1092	EnvWriteInt	void	int plr,str key,int val
+1093	EnvReadString	str	int plr,str key
+1094	EnvReadInt	int	int plr,str key
+1095	EnvWriteObj	void	int plr,str key,Obj o
+1096	EnvReadObj	Obj	int plr,str key
+1097	EnvList	void	str key
+1098	EnvList	void	Settlement set,str key
+1099	EnvFind	void	str key
+1100	EnvExport	void	str filename
+1101	_ClearEnv	void	
+1102	RegisterSettlementUpgrade	void	Settlement set,str name_of_command_from_commands_xml
+1103	RegisterPlayerUpgrade	void	int player,str name_of_command_from_commands_xml
+1104	RunSequence	void	str
+1105	_SequencesStatus	void	
+1106	IsRunning	bool	str
+1107	IsWaiting	bool	str
+1108	IsFinished	bool	str
+1109	ViewPos	point	
+1110	View	void	point ptWhere,bool bLock
+1111	PlayMusic	void	str sound
+1112	PlaySound	void	str sound
+1113	PlaySound	void	int player,str sound
+1114	MusicPlaying	bool	
+1115	SetSpeed	void	int speed
+1116	GetSpeed	int	
+1117	TogglePause	void	
+1118	_Run	bool	str script
+1119	Run	void	str script
+1120	Run	void	str script,int i1
+1121	Run	void	str script,int i1,int i2
+1122	Run	void	str script,int i1,int i,int i3
+1123	Run	void	str script,int i1,int i2,int i3,int i4
+1124	Run	void	str script,int i1,int i2,int i3,int i4,int i5
+1125	Settlement::Run	void	Settlement set,str script
+1126	IRun	int	str script
+1127	IRun	int	str script,int i1
+1128	IRun	int	str script,int i1,int i2
+1129	IRun	int	str script,int i1,int i,int i3
+1130	IRun	int	str script,int i1,int i2,int i3,int i4
+1131	IRun	int	str script,int i1,int i2,int i3,int i4,int i5
+1132	ToggleFPS	void	
+1133	GetConst	int	str id
+1134	GetConstStr	str	str id
+1135	rand	int	int max
+1136	BlockUserInput	void	
+1137	UnblockUserInput	void	
+1138	ExploreCircle	void	int PlayerID,point ptCenter,int radius
+1139	ExploreArea	void	int PlayerID,str area
+1140	Party	ObjList	
+1141	GetTime	int	
+1142	EndGame	void	int player,bool lose
+1143	IsMultiplayer	bool	
+1144	SelAvgLevel	int	
+1145	SelAvgFood	int	
+1146	SelAvgStamina	int	
+1147	SelAvgArmor	int	
+1148	SelAvgDamage	int	
+1149	SelHealth	int	
+1150	SelMaxHealth	int	
+1151	LockView	void	
+1152	UnlockView	void	
+1153	IsViewLocked	bool	
+1154	StartViewFollow	void	Unit
+1155	StopViewFollow	void	
+1156	StartViewFollow	void	NamedObj
+1157	SetDifficulty	void	int
+1158	GetDifficulty	int	
+1159	GetMapRect	rect	
+1160	MapName	str	
+1161	ChangeMap	void	str,str
+1162	SetNextSeason	void	str
+1163	GetTeamMilitaryScore	int	int
+1164	GetTeamPowerScore	int	int
+1165	GetTeamAchievementsScore	int	int
+1166	GetTeamOverallScore	int	int
+1167	GetVec	point	point,point,int
+1168	IsPassable	bool	point
+1169	IsPassable3x3	bool	point
+1170	BlockMiniMap	void	bool
+1171	IsExplored	bool	point,int
+1172	SelectionGold	int	
+1173	SelectionFood	int	
+1174	NoTents	bool	
+1175	RandomOffset	point	int
+1176	RandomPointInCircle	point	point,int
+1177	PlayMovie	bool	str
+1178	Translate	str	str
+1179	Translatef	str	str,str
+1180	Translatef	str	str,str,str
+1181	Translatef	str	str,str,str,str
+1182	SaveAdventure	void	str
+1183	WasSelectionAssigned	bool	int,int
+1184	WasSelectionAssigned	bool	int
+1185	IsSelectionAssigned	bool	int,int
+1186	IsSelectionAssigned	bool	int
+1187	SetGlobalBloodlust	void	bool
+1188	RevealHiddenEnemyUnits	void	point,int,int
+1189	InvalidateDamageFormulaParams	void	
+1190	SwapSelectedObj	void	Obj,Obj
+1191	Crash	void	
+1192	AreaCenter	point	str
+1193	DisableArea	void	str
+1194	EnableArea	void	str
+1195	GetRandomPointInArea	point	str
+1196	AreaDistTo	int	point,str
+1197	_AdvPlaceAreaRect	void	str,rect,str,str
+1198	_AdvPlaceAreaCirc	void	str,point,int,str,str
+1199	Sacrifice::AddDruid	bool	Sacrifice,Druid,int
+1200	Sacrifice::RemoveDruid	void	Sacrifice,Druid
+1201	Sacrifice::Consume	int	Sacrifice,int,int,bool
+1202	Sacrifice::IsEmpty	bool	Sacrifice
+1203	Sacrifice::MistAction	void	Sacrifice,int
+1204	Sacrifice::IsInvisibility	bool	Sacrifice
+1205	Sacrifice::Druids	ObjList	Sacrifice
+1206	Sacrifice::UpdateCoverOfMercy	void	Sacrifice
+1207	GiveNote	void	str
+1208	RemoveNote	void	str
+1209	ShowNotes	void	
+1210	ClearNotes	void	
+1211	IsNoteActive	bool	str
+1212	CreateFeedback	void	str,Unit
+1213	CreateFeedback	void	str,Unit,int
+1214	CreateFeedback	void	str,point
+1215	CreateFeedback	void	str,point,int
+1216	DiplCeaseFire	void	int,int,bool
+1217	DiplShareView	void	int,int,bool
+1218	DiplShareControl	void	int,int,bool
+1219	DiplShareSupport	void	int,int,bool
+1220	DiplGetCeaseFire	bool	int,int
+1221	DiplGetShareView	bool	int,int
+1222	DiplGetShareControl	bool	int,int
+1223	DiplGetShareSupport	bool	int,int
+1224	ClearDiplomacy	void	
+1225	RecreateExploration	void	
+1226	Obj::AsGate	Gate	Obj
+1227	Gate::IsOpened	bool	Gate
+1228	Gate::IsClosed	bool	Gate
+1229	Gate::AreEnemiesAround	bool	Gate
+1230	Gate::AreFriendsAround	bool	Gate
+1231	Gate::LookAround	void	Gate,int
+1232	Gate::OpenNow	void	Gate
+1233	Gate::CloseNow	void	Gate
+1234	Obj::AsTeleport	Teleport	Obj
+1235	Teleport::destination	Teleport	Teleport
+1236	Teleport::exit_vector	point	Teleport
+1237	Teleport::Traverse	void	Teleport,int
+1238	Ship::ShowBuildAnimation	void	Ship,point
+1239	Ship::NotifyBoardUnit	void	Ship,Unit
+1240	Ship::AreUnitsToBoard	bool	Ship
+1241	Ship::BestCandidateToBoard	Unit	Ship
+1242	Ship::BoardUnit	bool	Ship,Unit
+1243	Ship::NotifyBoardUnitCancel	void	Ship,Unit
+1244	Ship::NotifyShipBoardingCancel	void	Ship
+1245	Ship::UnboardUnits	void	Ship,ObjList
+1246	Ship::UnboardAllUnits	void	Ship
+1247	IsPointInWater	bool	point
+1248	Ship::FindPointToStay	point	Ship
+1249	Ship::UnitsCount	int	Ship
+1250	Ship::UnitsMax	int	Ship
+1251	Ship::Idle	void	Ship
+1252	Ship::HasAiTransport	bool	Ship
+1253	Ship::GetUnitsOnBoard	ObjList	Ship
+1254	Ship::ApplyAiTransport	void	Ship ship
+1255	Ship::ClearAiTransport	void	Ship ship
+1256	Ship::GetTransPt	point	Ship
+1257	Ship::IsBuilding	bool	Ship
+1258	Ship::NumUnitsToBoard	int	Ship
+1259	Unit::RecalcBonuses	void	Unit
+1260	Unit::AddBonus	void	Unit,int,int,int,int,int
+1261	Unit::RemoveBonus	void	Unit,int,int,int,int,int
+1262	ItemUsed	void	int
+1263	GetUseCount	int	
+1264	Item::use_count	int	Item
+1265	Item::custom_data	int	Item
+1266	Item::id	str	Item
+1267	Item::name	str	Item
+1268	Item::display_name	str	Item
+1269	Item::Use	void	Item
+1270	Item::Use	void	Item,Obj
+1271	Item::Use	void	Item,point
+1272	Item::SetCustomData	void	Item,int
+1273	GetThis	Item	
+1274	Flying::PlayAnim	void	Flying,int,point,int
+1275	Flying::IsInAir	bool	Flying
+1276	Flying::IsLanding	bool	Flying
+1277	Flying::z	int	Flying
+1278	Flying::PickFlyingPoint	point	Flying,int
+1279	Flying::PickLandingPoint	point	Flying,int
+1280	Flying::FindNearBird	Flying	Flying
+1281	Flying::AdjustFlyDir	void	Flying,point&
+1282	GetTerrainHeight	int	point
+1283	GetVecByDir	point	point,int
+1284	GetAngleByDir	int	point
+1285	GetDirByAngle	point	int
+1286	MapSize	int	
+1287	Unit::GetAnimDuration	int	Unit,int
+1288	Unit::dir	point	Unit
+1289	OnLeft	bool	point,point
+1290	NumSquads	int	int
+1291	GetSquad	Squad	int,int
+1292	Unit::GetSquad	Squad	Unit
+1293	Squad::Player	int	Squad
+1294	Squad::No	int	Squad
+1295	Squad::Eval	int	Squad
+1296	Squad::State	int	Squad
+1297	Squad::SetState	void	Squad,int
+1298	Squad::StateTime	int	Squad
+1299	Squad::Size	int	Squad
+1300	Squad::SrcGAIKA	GAIKA	Squad
+1301	Squad::DestGAIKA	GAIKA	Squad
+1302	Squad::GAIKAIn	GAIKA	Squad
+1303	Squad::Leader	Unit	Squad
+1304	Squad::Units	ObjList	Squad
+1305	Squad::SetState	void	Squad sq,int nState,int nSetFlags,int nClrFlags
+1306	Squad::ClrCmd	void	Squad sq,int nState,int nSetFlags,int nClrFlags
+1307	Squad::SetCmd	void	Squad sq,int nState,int nSetFlags,int nClrFlags,str cmd
+1308	Squad::SetCmd	void	Squad sq,int nState,int nSetFlags,int nClrFlags,str cmd,point pt
+1309	Squad::SetCmd	void	Squad sq,int nState,int nSetFlags,int nClrFlags,str cmd,Obj obj
+1310	ObjList::Siege	void	ObjList ol,Obj target,int max_cats,int nSiegeState
+1311	Squad::Siege	void	Squad sq,Obj target,int max_cats,int nSiegeState,int nAttackState
+1312	Squad::SendTo	void	Squad,GAIKA,int
+1313	Squad::AIDest	GAIKA	Squad
+1314	Squad::OrderDest	GAIKA	Squad
+1315	Squad::DelOrder	void	Squad
+1316	Squad::GetFlags	int	Squad
+1317	Squad::TestFlags	bool	Squad,int
+1318	Squad::SetFlags	void	Squad,int,int
+1319	Squad::Lock	void	Squad
+1320	Squad::Unlock	void	Squad
+1321	Squad::LastFightTime	int	Squad
+1322	Squad::InHolder	bool	Squad
+1323	Squad::pos	point	Squad
+1324	Squad::health	int	Squad
+1325	Squad::maxhealth	int	Squad
+1326	Squad::food	int	Squad
+1327	Squad::FoodComing	int	Squad
+1328	Squad::SendFoodWagon	bool	Squad,int,int
+1329	Squad::EvalAttach	int	Squad,Unit,int
+1330	Squad::Count	int	Squad,str
+1331	Squad::HasFreedom	bool	Squad
+1332	GAIKACount	int	
+1333	GetGAIKA	GAIKA	int
+1334	GetGAIKA	GAIKA	Obj
+1335	GetGAIKA	GAIKA	point
+1336	GetGAIKA	GAIKA	int,int
+1337	LAIKA	GAIKA	int,int
+1338	GAIKA::ID	int	GAIKA
+1339	GAIKA::Empty	bool	GAIKA
+1340	GAIKA::Type	int	GAIKA
+1341	GAIKA::Center	point	GAIKA
+1342	GAIKA::GetDestPoint	point	GAIKA,Unit
+1343	GAIKA::settlement	Settlement	GAIKA
+1344	GAIKA::GetSquads	void	GAIKA,SquadList&
+1345	GAIKA::GetSquads	void	GAIKA,SquadList&,int
+1346	GAIKA::GetSquads	void	GAIKA,SquadList&,int,int
+1347	GAIKA::GetSquads	void	GAIKA,SquadList&,int,int,int
+1348	GAIKA::Eval	int	GAIKA,int
+1349	GAIKA::Eval	int	GAIKA,int,int
+1350	GAIKA::Eval	int	GAIKA,int,int,int
+1351	GAIKA::Eval	void	GAIKA,int,int,int&,int&,int&,int&
+1352	GAIKA::EvalNeighbors	void	GAIKA,int,int,int&,int&,int&,bool
+1353	GAIKA::Count	void	GAIKA,int,int,int&,int&,int&,int&
+1354	GAIKA::GetPriority	int	GAIKA,int
+1355	GAIKA::GetLAIKA	int	GAIKA,int
+1356	GAIKA::CalcPriority	int	GAIKA,int
+1357	GAIKA::SetPriority	void	GAIKA,int,int
+1358	GAIKA::Prioritized	bool	GAIKA,int
+1359	GAIKA::Explored	bool	GAIKA,int
+1360	GAIKA::Explore	void	GAIKA,int,bool
+1361	GAIKA::CanExplore	bool	GAIKA,int
+1362	GAIKA::Revealed	bool	GAIKA,int
+1363	GAIKA::LastSeen	int	GAIKA,int
+1364	GAIKA::NoAttack	bool	GAIKA,int
+1365	GAIKA::SetNoAttack	void	GAIKA,int,bool
+1366	GAIKA::NoRecruit	bool	GAIKA,int
+1367	GAIKA::SetNoRecruit	void	GAIKA,int,bool
+1368	GAIKA::GetDistToPlayers	void	GAIKA,int,int&,int&,int&
+1369	GAIKA::GetDistToArmies	int	GAIKA,int
+1370	GAIKA::Count	int	GAIKA,int,int,str
+1371	GAIKA::MinNeed	int	GAIKA g,int idPlayer,int own,int ally,int enemy
+1372	GAIKA::MaxNeed	int	GAIKA g,int idPlayer,int own,int ally,int enemy
+1373	GAIKA::Recruit	int	GAIKA g,int idPlayer,int nMin,int nMax,int *nAvail
+1374	GAIKA::GetStrat	int	GAIKA g,int idPlayer
+1375	GAIKA::StratRunning	int	GAIKA g,int idPlayer
+1376	GAIKA::RunStrat	void	GAIKA g,int idPlayer,int Strat
+1377	GAIKA::AllEnemiesInHolder	bool	GAIKA g,int idPlayer
+1378	GAIKA::MilitaryPresence	bool	GAIKA g,int idPlayer
+1379	GAIKA::Neighbors	int	GAIKA g
+1380	GAIKA::Neighbor	GAIKA	GAIKA g,int idx
+1381	SetNoAttack	void	str,int,bool
+1382	SetNoRecruit	void	str,int,bool
+1383	AreaAINoRecruit	void	str,int,bool
+1384	AreaAINoAttack	void	str,int,bool
+1385	AreaAIMaxPriority	void	str,int,bool
+1386	AreaAISetAttackOptimism	void	str,int,int
+1387	SetMAIKA	void	GAIKA gSrc,GAIKA gDst,GAIKA gMAIKA
+1388	DumpMAIKA	void	int Src,int gDst,int gMAIKA
+1389	Settlement::UnitsInHolderEval	int	Settlement s
+1390	SquadList::IsValid	bool	SquadList
+1391	SquadList::EOL	bool	SquadList
+1392	SquadList::Rewind	bool	SquadList
+1393	SquadList::Next	bool	SquadList
+1394	SquadList::Cur	Squad	SquadList
+1395	SquadList::Size	int	SquadList
+1396	SquadList::Eval	int	SquadList
+1397	SquadList::Lock	void	SquadList
+1398	SquadList::Unlock	void	SquadList
+1399	SquadList::Add	void	SquadList&,Squad
+1400	SquadList::Select	void	SquadList,int
+1401	SquadList::Train	int	SquadList SL,int nTrainState,int nEnterState,int nStopOn,int nStartOn,Obj objEnter
+1402	Settlement::NumTowers	int	Settlement
+1403	Settlement::NumTowersBroken	int	Settlement
+1404	Settlement::NumGates	int	Settlement
+1405	Settlement::NumGatesBroken	int	Settlement
+1406	Settlement::EvalDefences	int	Settlement
+1407	Settlement::FindCatapultSpot	point	Settlement,point
+1408	Settlement::BestGate	Gate	Settlement,point
+1409	Settlement::OpenAllGates	void	Settlement
+1410	Settlement::IdleAllGates	void	Settlement
+1411	Building::IsVeryBroken	bool	Building
+1412	Settlement::CanBeCaptured	bool	Settlement
+1413	Settlement::IsStronghold	bool	Settlement s
+1414	Settlement::IsVillage	bool	Settlement s
+1415	Settlement::IsOutpost	bool	Settlement s
+1416	Settlement::IsTTent	bool	Settlement s
+1417	Settlement::IsShipyard	bool	Settlement s
+1418	Settlement::IsAlly	bool	Settlement s,int idPlayer
+1419	Settlement::IsEnemy	bool	Settlement s,int idPlayer
+1420	Settlement::IsOwn	bool	Settlement s,int idPlayer
+1421	Settlement::IsIndependent	bool	Settlement s
+1422	Settlement::IsIndependentGuarded	bool	Settlement s
+1423	Settlement::GetRel	int	Settlement s,int idPlayer
+1424	Settlement::MaxPopulation	int	Settlement s
+1425	Settlement::SupplyCount	int	Settlement,str
+1426	Settlement::BestToSupply	Settlement	Settlement s
+1427	SettlementCount	int	point around,int dist,str class
+1428	FindRuins	Obj	point around,int dist,int level
+1429	AttackSetForTraining	bool	Obj,point,int
+1430	Unit::BestTargetInGAIKA	Obj	Unit u
+1431	Unit::AI	bool	Unit u
+1432	AIRun	int	str script
+1433	AIRun	int	str script,Settlement set,ObjList ol,Obj objParam,int nParam
+1434	AIRun	int	int player,str script,Settlement set,ObjList ol,Obj objParam,int nParam
+1435	AIBreakScript	void	int id
+1436	AIBreakScript	void	int player,int idScript
+1437	AIExecCmd	void	Obj obj,str signature
+1438	IsAIShow	void	
+1439	ScrollTo	void	point,int
+1440	Settlement::BestBarrack	Barrack	Settlement s,int nMinQueue
+1441	GetGaikaCenter	point	int nGaika
+1442	GetSquadCenter	point	int nPlayerID,int nSquad
+1443	Settlement::FindBuilding	Building	Settlement s,str base_class
+1444	Settlement::FindResearchLab	Building	Settlement s,str strTech
+1445	Building::IsBarrack	bool	Building b
+1446	SetToIdx	int	Settlement pSet
+1447	IdxToSet	Settlement	int nSetIdx
+1448	MaxSetIdx	int	
+1449	AIH_UnitBuilt	void	Unit unit
+1450	AIGetPlayer	int	
+1451	AIO_SendSquad	void	int nSquad,int nGAIKA,int nWeight
+1452	AIO_Train	void	int nSetIdx,str UnitType,int nCount,int nWeight
+1453	ViewSlot	point	
+1454	Squadize	void	ObjList ol,SquadList *sl,int nState
+1455	IsResearched	bool	Settlement set,str research
+1456	IsResearched	bool	int idPlayer,str research
+1457	IsResearching	bool	Settlement set,str research
+1458	IsResearching	bool	int idPlayer,str research
+1459	GetCmdCost	bool	str cmd,int *gold,int *food
+1460	GetCmdStaminaCost	int	str cmd
+1461	Settlement::CanAfford	bool	Settlement set,int gold,int food
+1462	Settlement::CanAfford	bool	Settlement set,str cmd
+1463	Settlement::CanAfford	bool	Settlement set,str cmd,int nCount
+1464	Settlement::MaxAffordCount	int	Settlement set,str cmd
+1465	Settlement::CanResearch	bool	Settlement set,str research
+1466	Settlement::Research	void	Settlement set,str research
+1467	Settlement::Reserve	int	Settlement set
+1468	Settlement::StopReserving	void	Settlement set
+1469	Settlement::ReserveFor	bool	Settlement set,str tech,int percent
+1470	Settlement::GoldSpentOnArmy	int	Settlement set
+1471	Settlement::SpentGoldOnArmy	void	Settlement set,int amount
+1472	Settlement::GoldSpentOnTech	int	Settlement set
+1473	Settlement::SpentGoldOnTech	void	Settlement set,int amount
+1474	Settlement::CheckTechBudget	bool	Settlement set,str tech,int budget
+1475	Settlement::WaterLsa	int	Settlement set
+1476	Settlement::LandLsa	int	Settlement set
+1477	MilUnits	int	int idPlayer
+1478	HeroArmiesFullPerc	int	int idPlayer
+1479	MilEval	int	int idPlayer
+1480	AllyMilUnits	int	int idPlayer
+1481	AllyMilEval	int	int idPlayer
+1482	EnemyMilUnits	int	int idPlayer
+1483	EnemyMilEval	int	int idPlayer
+1484	EnemyPlayersEval	int	int idPlayer,int *pMinEval,int *pMaxEval,int *pAverEval
+1485	Strongholds	int	int idPlayer
+1486	AllyStrongholds	int	int idPlayer
+1487	EnemyStrongholds	int	int idPlayer
+1488	Villages	int	int idPlayer
+1489	AllyVillages	int	int idPlayer
+1490	EnemyVillages	int	int idPlayer
+1491	Outposts	int	int idPlayer
+1492	AllyOutposts	int	int idPlayer
+1493	EnemyOutposts	int	int idPlayer
+1494	Count	int	int idPlayer,str class
+1495	AllyCount	int	int idPlayer,str class
+1496	EnemyCount	int	int idPlayer,str class
+1497	GAIKA::LSA	int	GAIKA gaika
+1498	LSA	int	int x,int y
+1499	LSA	int	point pt
+1500	Obj::LSA	int	Obj obj
+1501	CheckLsaPath	int	int lsaSrc,int lsaDst,int playerId
+1502	Ships	int	int idPlayer,int lsa
+1503	EnemyShips	int	int idPlayer,int lsa
+1504	AllyShips	int	int idPlayer,int lsa
+1505	ShipNeeds	int	int idPlayer,int lsa
+1506	ClrShipNeeds	void	int idPlayer,int lsa
+1507	IncShipNeeds	void	int idPlayer,int lsa
+1508	IsWaterLsa	bool	int lsa
+1509	AIAssist	void	
+1510	AIStart	void	int player
+1511	AIStart	void	int player,str profile
+1512	AIStart	void	int player,str profile,int difficulty
+1513	AIStop	void	int player
+1514	NearestHospital	GAIKA	Squad sq
+1515	NearestStronghold	Settlement	point pt,int idPlayer,int fltPlayer
+1516	NearestStronghold	Settlement	point pt,int idPlayer
+1517	NearestStronghold	Settlement	point pt
+1518	NearestSet	Settlement	point pt,str type,int idPlayer,int fltPlayer
+1519	NearestSet	Settlement	point pt,str type,int idPlayer
+1520	NearestSet	Settlement	point pt
+1521	GetSettlements	ObjList	str,int
+1522	Settlement::GetEconomyScript	int	Settlement,int
+1523	Settlement::RunEconomyScript	void	Settlement,int
+1524	Settlement::EconomyScript	int	Settlement
+1525	Settlement::GetTacticScript	int	Settlement,int
+1526	Settlement::RunTacticScript	void	Settlement,int
+1527	Settlement::TacticScript	int	Settlement
+1528	Settlement::GetGaika	GAIKA	Settlement
+1529	Settlement::CancelSupply	void	Settlement
+1530	Gate::Inside	bool	Gate,Squad
+1531	Gate::Outside	bool	Gate,Squad
+1532	Settlement::UpgradeBestBarrack	bool	Settlement,int
+1533	Settlement::RepairAll	void	Settlement
+1534	PrepareAiTransportShip	Ship	int,int,int,str,point
+1535	CheckLP	void	
+1536	SendSquadToLsaX	void	
+1537	GetMouseXY	void	
+1538	RUType	int	str strClass,int nRace
+1539	UType	str	int nType,int nRace
+1540	UTech	str	int nType,int nRace
+1541	UTrainCmd	str	int nType,int nRace
+1542	UEnabled	bool	int mask,int bit
+1543	CheckUEnabled	bool	int *mask,int idPlayer,int max,int nType,int nRace
+1544	Squad::CalcGoAround	bool	Squad sq
+1545	Squad::TakeNearbyItems	bool	Squad sq,int range
+1546	Obj::HasItem	bool	Obj obj,str name
+1547	Obj::UseItem	bool	Obj obj,str name
+1548	FindTeleport	Obj	int player,point ptSrc,point ptDst
+1549	Squad::UseTeleport	bool	Squad sq,Obj tel,int state,str cmd,point pt
+1550	Squad::InvadeThroughGate	void	Squad sq,Obj gate,int state
+1551	Eval	void	int idPlayer,point pt,int range,int *own,int *ally,int *enemy
+1552	EvalGroup	int	str group
+1553	Unit::BestMDPos	point	Unit this,int MDRange,int MinRange,int MaxRange,int MinEval,bool bProtectFriendly
+1554	Unit::BestProtPos	Obj	Unit this,int Range,int MinRange,int MaxRange,int MinEval
+1555	IsProtected	bool	int player,point pos,str class
+1556	NeedTraining	bool	int
+1557	GetCounterUnits	void	Settlement pSet,IntArray *pW
+1558	GetClassHealt	int	str
+1559	GetTrainGold	int	str
+1560	IsAIPlayer	bool	int
+1561	Hero::AIGetSkillToDevelop	void	Hero,int&,int&
+1562	SetNoAIFlag	void	ObjList,bool
+1563	GAIKA::GetAIControlledUnits	ObjList	GAIKA,str,int,int,bool
+1564	Settlement::TSRecruitArmy	ObjList	Settlement,str,int
+1565	Settlement::TSGetAllBarracks	ObjList	Settlement
+1566	Settlement::TSGetAllArenae	ObjList	Settlement
+1567	Settlement::TSGetAllTemples	ObjList	Settlement
+1568	Settlement::BestArena	Building	Settlement
+1569	ArenaTrainCmd	str	int
+1570	Settlement::TSArenaRecruit	ObjList	Settlement,int
+1571	ArenaUTech	str	int
+1572	ArenaUType	str	int
+1573	Settlement::TSRecruitHero	Hero	Settlement
+1574	Settlement::TSResearch	bool	Settlement,str
+1575	Settlement::TSTempleRecruit	ObjList	Settlement,int
+1576	Settlement::BestTemple	Building	Settlement
+1577	TempleUType	str	int
+1578	TempleUTrain	str	int
+1579	Hero::TSAdvHeroSkills	void	Hero,IntArray&,IntArray&
+1580	SelSquad	void	
+1581	SelSquad	void	int nPlayerID,int nSquad
+1582	SelSquadLeader	void	
+1583	GAIKA::Dump	void	GAIKA
+1584	Squad::Dump	void	Squad
+1585	SquadList::Dump	void	SquadList
+1586	Breakpoint	void	
+1587	PrGAIKAStrat	void	GAIKA,int
+1588	ViewGAIKA	GAIKA	
+1589	vg	void	int gaika
+1590	SS_STR	str	int state
+1591	GS_STR	str	int strat
+1592	Settlement::IsTeutonTent	bool	Settlement
+1593	AIV	void	int
+1594	AIV	void	int,str
+1595	DbgAI	void	int idPlayer
+1596	DbgArmy	void	int idPlayer
+1597	dp	void	int n
+1598	LsaStr	str	int lsa
+1599	AIVar	int	int idPlayer,int var
+1600	AIVar	bool	int idPlayer,int var,int bit
+1601	SetAIVar	void	int idPlayer,int var,int value
+1602	SetAIVar	void	int idPlayer,int var,int bit,bool value
+1603	AIRun	void	int idPlayer,str script
+1604	AIRun	void	int idPlayer,str script,int i1
+1605	AIRun	void	int idPlayer,str script,int i1,int i2
+1606	AIRun	void	int idPlayer,str script,int i1,int i,int i3
+1607	AIRun	void	int idPlayer,str script,int i1,int i2,int i3,int i4
+1608	AIRun	void	int idPlayer,str script,int i1,int i2,int i3,int i4,int i5
+1609	AIIRun	int	int idPlayer,str script
+1610	AIIRun	int	int idPlayer,str script,int i1
+1611	AIIRun	int	int idPlayer,str script,int i1,int i2
+1612	AIIRun	int	int idPlayer,str script,int i1,int i,int i3
+1613	AIIRun	int	int idPlayer,str script,int i1,int i2,int i3,int i4
+1614	AIIRun	int	int idPlayer,str script,int i1,int i2,int i3,int i4,int i5
+1615	Settlement::AIRun	void	Settlement set,str script
+1616	GAIKA::AIRun	void	GAIKA g,str script,int idPlayer
+1617	Squad::AIRun	void	Squad sq,str script
+1618	AppendFile	void	str file,str string
+1619	pr	void	str n
+1620	pr	void	int n
+1621	pr	void	bool b
+1622	cls	void	
+1623	quit	void	
+1624	switch	void	
+1625	_Black	void	
+1626	_Place	void	str cls,int x,int y
+1627	_InvalidateAllToggle	void	
+1628	_ToggleInvRects	void	
+1629	_SetCursor	void	str name
+1630	ProfileStart	void	
+1631	ProfileStop	void	
+1632	PerlinTest	void	
+1633	ShrinkEntities	void	
+1634	ReloadConstIni	void	
+1635	BuildSPF	void	
+1636	BuildRLEMMap	void	
+1637	PrintMemStats	void	
+1638	DumpObj	void	
+1639	ConvTerrains	void	
+1640	CheckClasses	void	
+1641	MakePassable	void	
+1642	SetPlayer	void	int playerID
+1643	CurPlayer	int	
+1644	ToggleFog	void	
+1645	SetFog	void	bool bFog
+1646	ExploreAll	void	
+1647	Invalidate	void	
+1648	Render	void	
+1649	ScreenShot	void	
+1650	ActivateScreenShots	void	int nShotsPerSec
+1651	ToggleScreenShots	void	int nShotsPerSec
+1652	DebugSelected	void	
+1653	Save	void	
+1654	ExportObjs	void	str name
+1655	ExportTerrain	void	str name
+1656	Load	void	
+1657	Save	void	str name
+1658	Load	void	str name
+1659	ChMap	void	str Map
+1660	MousePos	void	
+1661	Conv	void	
+1662	ToggleVis	void	
+1663	Spawn	void	int our,int enemy
+1664	RemoveDecors	void	
+1665	Explorer	void	
+1666	Dlg	void	str INI_name
+1667	DumpStats	void	Obj unit
+1668	sel	ObjList	
+1669	selo	Obj	
+1670	selu	Unit	
+1671	selh	Hero	
+1672	selb	Building	
+1673	sels	Settlement	
+1674	selsq	Squad	
+1675	selg	GAIKA	
+1676	Desync	void	
+1677	PFPersist	void	bool save
+1678	AddFD	void	
+1679	RemFD	void	
+1680	RebuildPass	void	
+1681	Splash	void	str sIni,str sSection
+1682	F5	void	
+1683	FlatTerrain	void	
+1684	Pause	void	
+1685	TestLoad	void	
+1686	TestSave	void	
+1687	sd	void	
+1688	_RedrawAll	void	
+1689	InsDecor	void	int x,int y,int decor
+1690	DelDecor	void	int x,int y
+1691	PreLit	void	
+1692	DeepWater	void	int Level,int Step,int Size
+1693	RayOfLight	void	int X,int Y,int Z,int Ambient
+1694	DumpFuncToXML	void	
+1695	USR	void	
+1696	ToggleLD	void	
+1697	ChangeFormation	void	str name
+1698	UndoMemory	void	
+1699	AdvExplorer	void	
+1700	ae	void	
+1701	TTest	void	str teststr
+1702	TTestf	void	
+1703	SaveEdit	void	
+1704	EdgeOfForever	void	
+1705	TestAdventure	void	
+1706	TestAdventureDebug	void	
+1707	SettlementCount	void	
+1708	LSA	void	
+1709	GAIKAFD	void	
+1710	ESG	void	int idPlayer1,int idPlayer2
+1711	GS	void	int idPlayer
+1712	cvar1	void	int nNewValue
+1713	cvar1	int	
+1714	cvar2	void	int nNewValue
+1715	cvar2	int	
+1716	TogglePtDraw	void	int ptTypeToToggle
+1717	DisablePtDraw	void	
+1718	EnablePtDraw	void	
+1719	Unit::GetAnimState	int	Unit u
+1720	ClearDecors	void	
+1721	GenTransTables	void	
+1722	GetItem	void	str sItemID
+1723	_PlayersAlly	void	int p1,int p2
+1724	_PlayersShareControl	void	int p1,int p2
+1725	_PlayersShareView	void	int p1,int p2
+1726	_PlayersShareSupport	void	int p1,int p2
+1727	_PlayersMakeEnemies	void	int p1,int p2
+1728	_chs	void	str season
+1729	_SetNextSeason	void	str season
+1730	IngameDebugSelected	void	
+1731	gmp	void	
+1732	GenHelpCmdIcons	void	
+1733	Hero::_EnableAllSkills	void	Hero h
+1734	gdb	void	
+1735	_handles	void	
+1736	GetFormDsc	str	str form
+1737	SetPlayerSettRace	void	int player,int race
+1738	SetSettRace	void	str sett,int race
+1739	SetShortcutSel	void	int player,int num,ObjList list
+1740	GetShortcutSel	ObjList	int player,int num
+1741	UIShowTab	void	int i
+1742	UITabShown	int	
+1743	BlurTerrain	void	int i
+1744	ShowFlatTerrain	void	
+1745	clock	str	
+1746	_DbgSel	void	
+1747	WaitIdle	bool	Query,int
+1748	WaitObjInQuery	bool	Obj,Query,int
+1749	WaitQueryCountBetween	bool	Query,int,int,int
+1750	WaitCommonObjects	bool	Query,Query,int
+1751	WaitHealthBetween	bool	Query,int,int,int
+1752	WaitSettlementCapture	bool	str,int,int
+1753	WaitSettlementAllied	bool	str,int,int
+1754	WaitEnvStringEqual	bool	str,str,int
+1755	WaitEnvIntBetween	bool	str,int,int,int
+1756	WaitAddNote	bool	str,int
+1757	WaitRemoveNote	bool	str,int
+1758	WaitConvRequest	bool	Query,Query,int,Obj&,Obj&
+1759	WaitUnitsInArea	bool	Query,str,int
+1760	WaitIdleUnitsInArea	bool	Query,str,int
+1761	WaitEmptyQuery	bool	Query,int
+1762	WaitNonEmptyQuery	bool	Query,int
+1763	WaitConvRequest	bool	Obj,Obj,int
+1764	EndConvSetup	void	Obj,Obj
+1765	WaitPlayerChat	void	int&,str&,int
+1766	ShowLastNotificationPos	void	
+1767	UserNotification	void	str,str,point,int
+1768	HasStarvingArmy	bool	
+1769	HasStarvingArmy	bool	int
+1770	StarvingArmyPos	Obj	int
+1771	RunAIHelper	void	str,str
+1772	RunAIHelper	void	str,str,str
+1773	RunAIHelper	void	str,str,str,str
+1774	RunAIHelper	void	str,str,str,str,str
+1775	RunAIHelper	void	str,str,str,str,str,str
+1776	RunAIHelper	void	str,str,str,str,str,str,str
+1777	RunAIHelper	void	str,str,str,str,str,str,str,str
+1778	RunAIHelper	void	str,str,str,str,str,str,str,str,str
+1779	StopAIHelper	void	str
+1780	IsAIHelperRunning	bool	str
+1781	pfd	void	
+1782	testpf	void	
+1783	SPFDone	void	
+1784	SPFFindAreas_Quant	bool	
+1785	SPFInitData	void	
+1786	SPFInitDirectionData	void	
+1787	SPFInitPointToAreaData	void	
+1788	SPFInitConnectData	void	
+1789	SPFCalcConnectHighRes_Quant	bool	
+1790	SPFIncreaseConnect	void	
+1791	SPFIncreaseConnect_Quant	bool	
+1792	GetInnState	int	str,str
+1793	SetInnState	void	str,str,int
+1794	GetInnState	int	Obj
+1795	SetInnState	void	Obj,int
+1796	GenTransGame	void	str Language
+1797	MousePtm	point	
+1798	point::GetGAIKA	GAIKA	point pt
+1799	Goto	void	int x,int y
+1800	ToggleFD	void	
+1801	Catch	void	Obj o
+1802	point::ClampToMap	point	point pt
+1803	RemakeVis	void	
+1804	HeroStats	void	
+1805	EqualHeroes	void	
+1806	_ui	void	
+1807	_di	void	
+1808	_bi	void	
+1809	_itools	void	
+1810	StartPlayerScript	void	int,str
+1811	StopPlayerScript	void	int,str
+1812	GetPlayerScriptsCount	int	int
+1813	GetPlayerScript	str	int,int
+1814	ShowAnnouncement	void	str key,str value
+1815	HideAnnouncement	void	str key
+1816	ShowAnnouncement	void	int player,str key,str value
+1817	HideAnnouncement	void	int player,str key
+1818	SetPlayerStatus	void	int player,int key,str value,bool important
+1819	SetPlayerStatus	void	int player,int key,bool important
+1820	ShowNotification	int	str,str,int,str,Obj
+1821	ShowHint	int	str,str,Obj
+1822	ShowTutorial	int	str,str,Obj
+1823	HideNotification	void	int
+1824	TutorialActive	bool	
+1825	HintsActive	bool	
+1826	EnableHintsAndTutorials	void	
+1827	DisableHintsAndTutorials	void	
+1828	AreHintsAndTutorialsEnabled	bool	
+1829	Obj::MistAction	void	Obj,int
+1830	Obj::MagicActionEnd	void	Obj
+1831	Obj::CoverOfMercyAction	void	Obj
+1832	Building::GetDefenderCls	str	Building,int
+1833	Building::GetDefendersMax	int	Building,int
+1834	Building::GetDefendersOut	int	Building,int
+1835	Building::GetStartLevel	int	Building,int
+1836	Building::GetEndLevel	int	Building,int
+1837	Building::GetOutpostFood	int	Building
+1838	PrintMsg	void	int,str
+1839	_cr	void	
+1840	GetTerritoryState	int	str
+1841	SetTerritoryState	void	str,int
+1842	ConquestBonus	str	
+1843	FormDescription	str	str
+1844	GAIKA::SetControlFlag	void	GAIKA g,int player,bool value
+1845	GAIKA::GetControlFlag	bool	GAIKA g,int player
+1846	GAIKA::ControlledNeighbors	int	GAIKA g,int player
+1847	Unit::SetFreedom	void	Unit,bool
+1848	EndGame	void	int,bool,str
+1849	Hero::IsArmyOutside	bool	Hero
+1850	RandomPathCast	void	
+1851	DiplAreAllied	bool	int,int
+1852	Squad::GetLastAttacker	Obj	Squad
+1853	GAIKA::ApproachingSquads	int	GAIKA,int,int
+1854	SetUseCount	void	int
+1855	Item::SetUseCount	void	Item,int
+1856	WaitForMapChange	void	
