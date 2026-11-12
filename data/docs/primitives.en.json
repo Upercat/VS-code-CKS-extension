@@ -207,7 +207,8 @@
    "summary": "Routes a managed filename to a map worker and conditionally reports a nonzero return."
   },
   "void Obj::Clear()": {
-   "summary": "Obj::Clear resolves its referenced Obj slot and overwrites it with the null handle representation FFFF:00000000."
+   "summary": "Clears the Obj reference held by the variable on which it is called, leaving it without an associated object.",
+   "notes": "Modifies the reference stored in that variable. The reviewed operation writes a null reference; it does not issue an order to remove the object from the map. Behavior with an invalid reference container has not been checked dynamically."
   },
   "Unit Obj::AsUnit()": {
    "summary": "Obj::AsUnit returns a Unit handle only when the resolved Obj has mask [internal] set at offset 0x2C."
@@ -366,7 +367,8 @@
    "summary": "GetStaminaDecTime returns max(signed object [internal field], zero) after an unguarded field dereference."
   },
   "int Obj::CmdCount()": {
-   "summary": "Returns the command count at object offset 0x98 when the resolved object is live, otherwise zero."
+   "summary": "Returns the number of commands in the object's queue. Returns zero if the reference cannot be resolved or the object is considered destroyed.",
+   "notes": "This overload reads the command count without filtering by name. CmdCount(str) is a distinct overload. Zero can also come from an invalid reference or a destroyed object, so it is not sufficient by itself to test object validity. How every special command, such as idle, contributes to the count is not established here."
   },
   "int Obj::CmdCount(str)": {
    "summary": "Counts queued object commands whose embedded name equals the supplied string."
@@ -1153,8 +1155,8 @@
    "summary": "Forwards explicit point coordinates and integer radius to the common target-search helper."
   },
   "bool Unit::IsEnemyInSquadSight()": {
-   "summary": "Tests a linked sight record field for a live Unit and has a return-width mismatch on invalid paths.",
-   "notes": "⚠ Only partly documented so far."
+   "summary": "For a valid live unit, returns whether the enemy record associated with its squad contains entries.",
+   "notes": "Reads an existing record. Captures verified true results for counts of 1 and 2 and false results for a count of 0. They do not establish when the record is refreshed or justify treating this call as a fresh distance, visibility or diplomacy scan. Subsequent behavior with dead units or invalid references is not fully documented."
   },
   "bool Unit::EnemiesInSight()": {
    "summary": "Builds a diplomacy-filtered spatial query around the Unit and returns whether a matching candidate was found."
@@ -1214,7 +1216,8 @@
    "summary": "max_train_1_level pushes the dword stored at [internal]."
   },
   "point Unit::GetUnexploredPoint(int)": {
-   "summary": "Samples bounded map cells around a unit and returns a random eligible unexplored point."
+   "summary": "Returns a random unexplored point near the unit, or the point (-1, -1) when it finds none.",
+   "notes": "With argument -1 the search window is about four times a unit field (probably its sight), between 512 and 3000 map units square. It can return (-1, -1) while much of the map is still unexplored. The game uses it in the Explore order."
   },
   "bool Unit::HasFreedom()": {
    "summary": "Combines a Unit flag test with a class helper to return a boolean."
@@ -1253,15 +1256,15 @@
    "summary": "Reads bit 20 of a resolved Unit's state flags as a boolean."
   },
   "void Unit::SetWalkAnim(int)": {
-   "summary": "Unit[internal field] is the current zero-based animation index; the no-argument SetWalkAnim selects index zero and the int overload stores argument minus one.",
-   "notes": "⚠ Only partly documented so far."
+   "summary": "Selects the unit's walking animation from the supplied index. This call does not issue a movement order.",
+   "notes": "The integer overload stores the supplied index minus one in a 16-bit selector. In verified captures, SetWalkAnim(13) selected internal index 12. The no-argument overload is distinct. Safe indices for each template and subsequent behavior with out-of-range indices or invalid references are not established."
   },
   "void Unit::SetWalkAnim()": {
    "summary": "Unit[internal field] is the current zero-based animation index; the no-argument SetWalkAnim selects index zero and the int overload stores argument minus one."
   },
   "void Unit::SetCarryWaterAnim()": {
-   "summary": "Selects animation index 0x10 for eight recognized villager ambient template names.",
-   "notes": "⚠ Only partly documented so far."
+   "summary": "Selects the carry-water animation for recognized ambient-villager templates. The call selects an animation; it does not collect or transfer resources.",
+   "notes": "The implementation recognizes GWVillagerAmbient, RWVillagerAmbient, MWVillagerAmbient, TWVillagerAmbient, CWVillagerAmbient, IWVillagerAmbient, BWVillagerAmbient and EWVillagerAmbient, selecting internal index 16. A nonmatching template leaves the selector unchanged. Captures verified calls that reached the selection, but did not visually test all eight templates or exercise the nonmatching branch. Invalid references require separate verification."
   },
   "void Unit::SetCarryGoodsAnim()": {
    "summary": "Maps recognized villager ambient template names to one of two carry-goods animation state values."
@@ -1270,8 +1273,8 @@
    "summary": "Tests whether a resolved Unit's carry animation selector is zero."
   },
   "void Unit::Disappear()": {
-   "summary": "Clears Unit command state and dispatches a series of path, visual, context, and virtual calls.",
-   "notes": "⚠ Only partly documented so far."
+   "summary": "Clears the unit's command state. In verified calls, it also moved the unit to (-1, -1), away from its map position.",
+   "notes": "Captured units retained their health, and one visual representation became null. This does not establish death, removal of the reference or automatic restoration. Game scripts use additional operations to save the position and restore it later; that complete sequence was not verified in these captures. Subsequent effects and invalid references remain unresolved."
   },
   "void Unit::SetNoselectFlag(bool)": {
    "summary": "Clears Unit [internal field] bit [internal] and sets it when the bool argument is nonzero."
@@ -1613,7 +1616,8 @@
    "summary": "Converts the settlement's owning PlayerInfo identifier to the one-based scripting player number."
   },
   "void Settlement::SetPlayer(int)": {
-   "summary": "Implements the registered CKS Settlement SetPlayer handler in the CKS VM."
+   "summary": "Changes the settlement's owner. When the player differs from the current one, the stored gold moves to the new owner's statistics and every building of the settlement gets the new owner.",
+   "notes": "An object joining a settlement keeps its owner; only this change of the settlement's owner re-owns its buildings. The loop over the buildings was not checked instruction by instruction."
   },
   "bool Settlement::IsValid()": {
    "summary": "CKS native primitive that tests whether an Obj handle is valid; used generically, including on settlement handles."
@@ -1787,7 +1791,8 @@
    "summary": "Removes receiver members matching handles encountered in a second list."
   },
   "void ObjList::Clear()": {
-   "summary": "Empties an ObjList's chunked member container."
+   "summary": "Empties the object list on which it is called. The objects that were listed remain in the game.",
+   "notes": "Removes entries from the list container and releases its internal storage. The documented effect is to empty the list, not to kill or erase its members or change their commands. This describes a successfully resolved list; it does not guarantee safe behavior for invalid list references."
   },
   "void ObjList::AddToGroup(str)": {
    "summary": "The handler looks up the named group, creates a group object on the nonzero lookup branch, then traverses the receiver list."
@@ -1932,7 +1937,8 @@
    "summary": "EnvReadInt builds a settlement property path and reads its integer value."
   },
   "void EnvWriteString(Building,str,str)": {
-   "summary": "Formats a building-scoped environment path and delegates the value string to the environment writer."
+   "summary": "Requests a string write under an environment key scoped to the specified building and its settlement. Arguments are the building, the key and the string.",
+   "notes": "If the building cannot be resolved, this overload skips the write. The key path includes the game environment, settlement and building. Available dynamic verification covers one specific call; it establishes neither cross-game persistence nor duplicate-key rules. Those storage properties remain unresolved."
   },
   "void EnvWriteInt(Building,str,int)": {
    "summary": "Formats a building-scoped environment path and delegates an integer value as decimal text to the environment writer."
@@ -2142,7 +2148,8 @@
    "summary": "MapName selects inline or pointed storage at game[internal field] and pushes an eight-byte managed string."
   },
   "void ChangeMap(str,str)": {
-   "summary": "ChangeMap looks up its first string in the game map table before forwarding mapped text and its second string."
+   "summary": "Changes to the map whose map.xml name matches the first string. If several maps share a name, the first folder in string order is used.",
+   "notes": "The first string is the map name, not the folder number. If no map has that name, \"ChangeMap: No map is named …\" is logged and nothing changes. The second string is not documented here."
   },
   "void SetNextSeason(str)": {
    "summary": "SetNextSeason stores codes3,2,1 only for complete winter,autumn,spring matches."
@@ -2274,7 +2281,8 @@
    "summary": "UpdateCoverOfMercy and CoverOfMercyAction consume one handle and query a receiver-derived interface before invoking their distinct helper with ECX equal to the nonnull query result."
   },
   "void GiveNote(str)": {
-   "summary": "Converts the script name to a native string and dispatches to the note-manager helper with a zero second argument."
+   "summary": "Shows the player the map objective whose id matches the text, as defined in the map's Notes.xml.",
+   "notes": "In play it shows a notice with an icon and the objective title. An unknown id shows nothing. The objectives window and the minimap marker were not checked."
   },
   "void RemoveNote(str)": {
    "summary": "Converts the script name to a native string and dispatches to the note-manager removal helper."
@@ -2334,7 +2342,8 @@
    "summary": "Queries a resolved Obj for its CVXGate component and returns a Gate handle or invalid sentinel."
   },
   "bool Gate::IsOpened()": {
-   "summary": "CKS Gate::IsOpened tests the resolved gate state and animation frame, with true on an invalid receiver."
+   "summary": "Returns true only when the gate is open and its opening animation has finished.",
+   "notes": "While the gate is still opening it returns false. The result for an object that is not a valid gate has not been re-checked."
   },
   "bool Gate::IsClosed()": {
    "summary": "CKS Gate::IsClosed tests the resolved gate state and animation frame, with false on an invalid receiver."
@@ -2352,7 +2361,8 @@
    "summary": "CKS-exposed Gate::OpenNow, setting the target state to open and resetting the timer, guarded by broken status and current state."
   },
   "void Gate::CloseNow()": {
-   "summary": "CKS-exposed Gate::CloseNow, setting the target state to closed and resetting the timer, guarded by broken status and current state."
+   "summary": "Closes the gate at once if it is not already closed and not destroyed.",
+   "notes": "A gate in its highest damage state is not affected. The gate's movement after closing is not documented here."
   },
   "Teleport Obj::AsTeleport()": {
    "summary": "Resolves an Obj and queries its Teleport interface to build a Teleport handle."
@@ -2367,7 +2377,8 @@
    "summary": "Teleport::Traverse ORs the dword at an indexed player record [internal field] into the resolved Teleport dword [internal field]."
   },
   "void Ship::ShowBuildAnimation(point)": {
-   "summary": "ShowBuildAnimation uses a 30-byte retained packet and leaves the VM cursor unchanged on nonzero wait returns, consuming the packet only on its terminal zero return."
+   "summary": "Slides an already created ship from the shipyard exit along the given vector over about 800 milliseconds, like a launch. It is not a construction sequence.",
+   "notes": "The game data only calls it from the shipyard script, after CreateShip and with the central building's exit vector. The position is updated during the slide. The visual result was not captured."
   },
   "void Ship::NotifyBoardUnit(Unit)": {
    "summary": "Resolves Ship and Unit references and conditionally invokes the native boarding notification admission helper.",
@@ -2928,7 +2939,8 @@
    "summary": "Checks the current script player's AI context and delegates the input script ID to an AI break helper."
   },
   "void AIBreakScript(int,int)": {
-   "summary": "Native adapter for this function with bounded routing established from instructions."
+   "summary": "Routes an interruption request for the identified script to the specified player's AI system. Arguments are the player number followed by the script ID.",
+   "notes": "The request is routed when the corresponding AI context exists. Immediate interruption and effects on pending scripts or tasks are not documented. The player-number check does not cover every invalid value; use valid player numbers."
   },
   "void AIExecCmd(Obj,str)": {
    "summary": "Native adapter for this function with bounded routing established from instructions."
@@ -3120,7 +3132,8 @@
    "summary": "Obj::LSA resolves a handle and forwards the full helper result."
   },
   "int CheckLsaPath(int,int,int)": {
-   "summary": "Implements the registered CheckLsaPath primitive at VA [internal]."
+   "summary": "Checks whether there is a path between two search areas (LSA) for a player. Returns 1 when both LSAs are the same and 0 when they are of different types.",
+   "notes": "The third argument is the player number counted from 1. The result for two different LSAs of the same type has not been observed."
   },
   "int Ships(int,int)": {
    "summary": "Reads the dword at AI table base plus lsa stride 0xC0 and player index offset 0x54."
@@ -3213,7 +3226,8 @@
    "summary": "Tests the zero-result gate/member path predicate universally over squad members."
   },
   "void Settlement::RepairAll()": {
-   "summary": "Scans settlement members for a repair descriptor and conditionally submits one staged command per admitted member."
+   "summary": "Scans eligible settlement members and requests one repair command for each member that provides that command and passes the admission checks.",
+   "notes": "For each considered member, the first command named repair is used. Preliminary calculations determine whether a request is admitted; an admitted request submits one command. The name RepairAll does not guarantee admission of every building or immediate completion. The complete meaning of the costs, timing and subsequent effects remains unresolved."
   },
   "Ship PrepareAiTransportShip(int,int,int,str,point)": {
    "summary": "PrepareAiTransportShip conditionally builds an eight-byte handle result."
@@ -3268,7 +3282,8 @@
    "summary": "Resolves three referenced output integers, delegates a spatial query, and writes its three results."
   },
   "int EvalGroup(str)": {
-   "summary": "EvalGroup sums low-word evaluation contributions from group handles."
+   "summary": "Adds up the evaluation of the live units in the group named by the text. Returns 0 if the group does not exist, without creating it.",
+   "notes": "Only objects still on the map count. The meaning of the evaluation value is not documented here."
   },
   "point Unit::BestMDPos(int,int,int,int,bool)": {
    "summary": "Ranks filtered hostile squad leaders by a circle relation count with optional friendly penalties and a distance bonus."
@@ -3286,7 +3301,8 @@
    "summary": "Tries indexed AI candidates and dispatches a settlement fallback into the resolved integer-array destination."
   },
   "int GetClassHealt(str)": {
-   "summary": "Implements the bounded native behavior of CKS this function at [internal]."
+   "summary": "Looks up a class by name and returns its class health value. Returns 0 when no class has that name.",
+   "notes": "The name is spelled \"Healt\". A result of 0 tells that a class is not loaded; for example, a script can check that a hero class exists before changing maps. It is not a general class-lookup API, and the full health computation is not documented."
   },
   "int GetTrainGold(str)": {
    "summary": "Resolves a unit class name through the command order registry and returns the training gold cost at offset 0x1E8."
@@ -3457,7 +3473,8 @@
    "summary": "Native adapter for this function resolving a player script and dispatching 5 integer arguments."
   },
   "void Settlement::AIRun(str)": {
-   "summary": "Resolves a script path for a settlement's player and submits a command for that path."
+   "summary": "Looks up the named AI script in the owning player's context and, if found, invokes it with the settlement as its context.",
+   "notes": "The argument is the name used to resolve the AI script path. The reviewed path directly invokes execution with a temporary context representing the same settlement. A missing script produces a diagnostic. Use a valid settlement. Resumption of scripts that wait and their subsequent effects are outside this entry."
   },
   "void GAIKA::AIRun(str,int)": {
    "summary": "Resolves a player script name and dispatches it as a registered command when found."
@@ -4136,6 +4153,46 @@
   },
   "void WaitForMapChange()": {
    "summary": "WaitForMapChange waits while a cached adventure field equals the current field."
+  },
+  "void point::SetLen(int)": {
+   "summary": "Rescales the point's integer coordinates toward the requested vector length, modifying the point in place. Integer arithmetic and truncation can make the resulting length differ from the requested value.",
+   "notes": "The argument is the requested length. On the documented calculation path, each coordinate is multiplied by that value and divided with truncation toward zero. Products use 32-bit arithmetic. Behavior with a zero computed divisor, invalid references, or values that cause overflow is not fully documented."
+  },
+  "int Squad::State()": {
+   "summary": "Returns the squad's numeric state code as an integer obtained from an unsigned 16-bit value.",
+   "notes": "Scripts compare this result with state constants such as SS_Approach and SS_ApproachWait. This entry does not enumerate the meaning of every code. Behavior with an invalid squad reference is not yet documented."
+  },
+  "void Obj::Progress(int)": {
+   "summary": "Requests a script wait associated with an object's command progress, using the supplied duration. This overload uses the integer argument in the script wait counter and records the progress start and end times.",
+   "notes": "Training and research scripts commonly obtain the duration from cmddelay, sometimes adjusting it by a percentage. The argument's relationship to real-time units and the details of script resumption are not fully documented."
+  },
+  "int Obj::cmddelay()": {
+   "summary": "Returns the delay-related value read from an object's command queue. Returns zero if the object cannot be resolved or the link to the queried command data is missing.",
+   "notes": "Game scripts use this value as the duration passed to Progress, for example Progress(cmddelay). Its unit and the full interpretation of the value are not yet documented."
+  },
+  "Barrack Settlement::BestBarrack(int)": {
+   "summary": "Selects an eligible barracks in the settlement with the lowest score accepted by its selection procedure. Returns an invalid reference if no candidate is selected.",
+   "notes": "Selection filters settlement members and excludes barracks in a particular state. The exact meaning of that state, the score, and the integer argument is not fully documented; this entry does not identify them as distance, level, or unit count."
+  },
+  "void EnvWriteString(int,str,str)": {
+   "summary": "Writes a string under a key in the specified player's environment. Arguments are, in order, the player number, the key, and the string to write.",
+   "notes": "This overload scopes the key to the specified player. Scripts use it, for example, to record research states. Retention of this data across games and complete player-number validation are not documented."
+  },
+  "bool DiplAreAllied(int,int)": {
+   "summary": "Checks whether two players have a reciprocal diplomatic alliance. Returns false if either player number is outside the range 1 to 16, and true when both valid numbers identify the same player.",
+   "notes": "For distinct players, the relationship is checked in both directions along with an additional condition in each player's state. The full meaning of that additional condition is not yet documented."
+  },
+  "GAIKA GetGAIKA(point)": {
+   "summary": "Obtains the GAIKA value associated with the point's coordinates in the AI map. Returns zero if that AI map is unavailable.",
+   "notes": "The result is obtained from an unsigned 16-bit value. Zero is a default return value in the case described, but it has not been established as a universally invalid GAIKA. Map topology and complete behavior for coordinates outside its bounds are not documented here."
+  },
+  "Query AreaObjs(str,str)": {
+   "summary": "Returns a query with the objects inside the map area named by its first argument. Works with both rectangular and circular areas.",
+   "notes": "A rectangle or circle map query is used depending on the area's shape. The meaning of the second string and the exact query filter are not documented here."
+  },
+  "point Flying::PickFlyingPoint(int)": {
+   "summary": "Picks a flight point at roughly the distance given by the argument. It follows the heading of a nearby moving unit of the same class; otherwise it tries twelve directions and chooses the least crowded one closest to the current heading.",
+   "notes": "A small random offset is added to the resulting point. An invalid object returns the point (0, 0). Based on static reading only."
   }
  }
 }

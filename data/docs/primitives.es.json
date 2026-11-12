@@ -1,5 +1,130 @@
 {
   "$schema": "./primitives.schema.json",
   "language": "es",
-  "entries": {}
+  "entries": {
+    "void point::SetLen(int)": {
+      "summary": "Modifica el punto como vector, escalando sus coordenadas enteras hacia la longitud indicada. La aritmética entera y el truncamiento pueden hacer que la longitud resultante difiera de la solicitada.",
+      "notes": "El argumento es la longitud solicitada. En la ruta de cálculo documentada, cada coordenada se multiplica por ese valor y se divide con truncamiento hacia cero. Los productos usan aritmética de 32 bits. No está completamente documentado el comportamiento cuando el divisor calculado es cero, con referencias no válidas o con valores que producen desbordamiento."
+    },
+    "int Squad::State()": {
+      "summary": "Devuelve el código numérico de estado del escuadrón como un entero obtenido de un valor de 16 bits sin signo.",
+      "notes": "Los scripts comparan este resultado con constantes de estado, como SS_Approach y SS_ApproachWait. Esta ficha no enumera el significado de todos los códigos. El comportamiento con una referencia de escuadrón no válida todavía no está documentado."
+    },
+    "void Obj::Progress(int)": {
+      "summary": "Solicita una espera del script asociada al progreso de una orden del objeto, usando la duración indicada. Esta variante utiliza el argumento entero en el contador de espera del script y registra los tiempos de inicio y final del progreso.",
+      "notes": "Los scripts de entrenamiento e investigación suelen obtener la duración a partir de cmddelay, a veces ajustándola con un porcentaje. La equivalencia del argumento con unidades de tiempo real y los detalles de reanudación del script no están completamente documentados."
+    },
+    "int Obj::cmddelay()": {
+      "summary": "Devuelve el valor asociado al retardo de una orden en la cola del objeto. Devuelve cero si el objeto no puede resolverse o si falta el vínculo a los datos de la orden consultada.",
+      "notes": "Los scripts del juego utilizan este valor como duración al llamar a Progress, por ejemplo Progress(cmddelay). Su unidad y la interpretación completa del valor todavía no están documentadas."
+    },
+    "Barrack Settlement::BestBarrack(int)": {
+      "summary": "Selecciona un cuartel elegible del asentamiento con la menor puntuación admitida por su procedimiento de selección. Devuelve una referencia no válida si no selecciona ningún candidato.",
+      "notes": "La selección filtra los miembros del asentamiento y descarta los cuarteles en un determinado estado. El significado exacto de ese estado, de la puntuación y del argumento entero no está completamente documentado; esta ficha no lo identifica como distancia, nivel ni número de unidades."
+    },
+    "void EnvWriteString(int,str,str)": {
+      "summary": "Escribe un texto bajo una clave en el entorno del jugador indicado. Los argumentos son, en orden, el número de jugador, la clave y el texto que se quiere escribir.",
+      "notes": "Esta variante asocia la clave al jugador indicado. Los scripts la utilizan, por ejemplo, para registrar estados de investigación. La conservación de esos datos entre partidas y la validación completa del número de jugador no están documentadas."
+    },
+    "bool DiplAreAllied(int,int)": {
+      "summary": "Consulta si dos jugadores tienen una relación diplomática de alianza recíproca. Devuelve false si alguno de los números está fuera del intervalo de 1 a 16, y true si ambos números válidos identifican al mismo jugador.",
+      "notes": "Para jugadores distintos se comprueba la relación en ambas direcciones y una condición adicional del estado de cada jugador. El significado completo de esa condición adicional todavía no está documentado."
+    },
+    "GAIKA GetGAIKA(point)": {
+      "summary": "Obtiene el valor GAIKA asociado a las coordenadas del punto en el mapa de IA. Devuelve cero si ese mapa de IA no está disponible.",
+      "notes": "El resultado procede de un valor de 16 bits sin signo. Cero es un valor de retorno predeterminado en el caso descrito, pero no está demostrado que siempre represente un GAIKA no válido. La topología del mapa y el comportamiento completo con coordenadas fuera de sus límites no están documentados aquí."
+    },
+    "void AIBreakScript(int,int)": {
+      "summary": "Encamina al sistema de IA del jugador indicado una solicitud de interrupción para el script identificado. Los argumentos son el número de jugador y el identificador del script, en ese orden.",
+      "notes": "La solicitud se encamina cuando existe el contexto de IA correspondiente. No está documentado que la interrupción sea inmediata ni cómo afecta a los scripts o tareas pendientes. La comprobación del número de jugador no cubre todos los valores no válidos; deben utilizarse números de jugador válidos."
+    },
+    "void Unit::SetWalkAnim(int)": {
+      "summary": "Selecciona la animación de marcha de la unidad a partir del índice indicado. Esta llamada no emite una orden de movimiento.",
+      "notes": "La variante con entero almacena el índice indicado menos uno en un selector de 16 bits. En las capturas verificadas, SetWalkAnim(13) seleccionó el índice interno 12. La variante sin argumentos es distinta. No están establecidos los índices seguros de cada plantilla ni el comportamiento posterior con índices fuera de rango o referencias no válidas."
+    },
+    "void Unit::SetCarryWaterAnim()": {
+      "summary": "Selecciona la animación de llevar agua para las plantillas de aldeano ambiental reconocidas. La llamada selecciona una animación; no recoge ni transfiere recursos.",
+      "notes": "La implementación reconoce GWVillagerAmbient, RWVillagerAmbient, MWVillagerAmbient, TWVillagerAmbient, CWVillagerAmbient, IWVillagerAmbient, BWVillagerAmbient y EWVillagerAmbient, y selecciona el índice interno 16. Si la plantilla no coincide, no cambia el selector. Las capturas verificaron llamadas que alcanzaron la selección, pero no probaron visualmente las ocho plantillas ni la rama sin coincidencia. Las referencias no válidas requieren una comprobación aparte."
+    },
+    "void Unit::Disappear()": {
+      "summary": "Limpia el estado de órdenes de la unidad. En las llamadas verificadas, también desplazó la unidad a la posición (-1, -1), fuera de su posición en el mapa.",
+      "notes": "Las capturas conservaron la salud de las unidades observadas y una representación visual pasó a quedar vacía. Esto no demuestra muerte, eliminación de la referencia ni restauración automática. Los scripts del juego utilizan operaciones adicionales para guardar la posición y restaurarla más tarde; esa secuencia completa no se verificó en estas capturas. Los efectos posteriores y las referencias no válidas siguen abiertos."
+    },
+    "bool Unit::IsEnemyInSquadSight()": {
+      "summary": "Para una unidad viva y válida, devuelve si el registro de enemigos asociado a su escuadra contiene entradas.",
+      "notes": "Consulta un registro existente. Las capturas verificaron resultados verdaderos con recuentos 1 y 2, y falsos con recuento 0. No establecen cuándo se actualiza ese registro ni permiten interpretar la llamada como un nuevo barrido de distancia, visibilidad o diplomacia. El comportamiento posterior con unidades muertas o referencias no válidas no está completamente documentado."
+    },
+    "void EnvWriteString(Building,str,str)": {
+      "summary": "Solicita escribir un texto bajo una clave del entorno específica del edificio indicado y de su asentamiento. Los argumentos son el edificio, la clave y el texto.",
+      "notes": "Si no se puede resolver el edificio, esta variante omite la escritura. La ruta de la clave incluye el entorno de la partida, el asentamiento y el edificio. La comprobación dinámica disponible cubre una llamada concreta; no establece la persistencia entre partidas ni las reglas al repetir una clave. Esas propiedades del almacén siguen pendientes."
+    },
+    "void Obj::Clear()": {
+      "summary": "Vacía la referencia Obj de la variable sobre la que se llama, dejándola sin un objeto asociado.",
+      "notes": "Modifica la referencia almacenada en esa variable. La operación revisada escribe una referencia nula; no ejecuta una orden de eliminación del objeto en el mapa. El comportamiento con un contenedor de referencia no válido no se ha comprobado dinámicamente."
+    },
+    "int Obj::CmdCount()": {
+      "summary": "Devuelve el número de órdenes de la cola del objeto. Devuelve cero si la referencia no se resuelve o el objeto se considera destruido.",
+      "notes": "Esta variante consulta el contador de órdenes sin filtrar por nombre. La variante CmdCount(str) es una sobrecarga distinta. Un resultado cero también puede proceder de una referencia no válida o de un objeto destruido, por lo que no basta para comprobar por sí solo la validez del objeto. Aquí no se establece cómo se contabiliza cada orden especial, como idle."
+    },
+    "void ObjList::Clear()": {
+      "summary": "Vacía la lista de objetos sobre la que se llama. Los objetos que figuraban en ella se conservan en el juego.",
+      "notes": "Elimina las entradas del contenedor de la lista y libera su almacenamiento interno. El efecto documentado es vaciar la lista, no matar, borrar ni cambiar las órdenes de sus miembros. Esta descripción se refiere a una lista resuelta correctamente; no garantiza un comportamiento seguro con referencias de lista no válidas."
+    },
+    "void Settlement::AIRun(str)": {
+      "summary": "Busca el script de IA indicado en el contexto del jugador propietario y, si lo encuentra, lo ejecuta pasando el asentamiento como contexto.",
+      "notes": "El argumento es el nombre utilizado para resolver la ruta del script de IA. La ruta revisada invoca directamente la ejecución con un contexto temporal que representa al mismo asentamiento. Si no encuentra el script, registra un diagnóstico. Debe utilizarse un asentamiento válido. La reanudación de scripts que esperan y sus efectos posteriores quedan fuera de esta ficha."
+    },
+    "void Settlement::RepairAll()": {
+      "summary": "Recorre los miembros elegibles del asentamiento y solicita una orden repair para cada uno que dispone de esa orden y supera las comprobaciones de admisión.",
+      "notes": "Para cada miembro considerado se utiliza la primera orden llamada repair que encuentra. Los cálculos previos determinan si se admite la solicitud; cuando se admite, se envía una sola orden. El nombre RepairAll no garantiza que todos los edificios sean admitidos ni que la reparación termine inmediatamente. El significado completo de los costes, la duración y los efectos posteriores sigue pendiente."
+    },
+    "Query AreaObjs(str,str)": {
+      "summary": "Devuelve una consulta con los objetos del área de mapa indicada por su nombre. Funciona tanto con áreas rectangulares como circulares.",
+      "notes": "Según la forma del área se usa una consulta de rectángulo o de círculo. El significado del segundo texto y el filtro exacto de la consulta no están documentados aquí."
+    },
+    "void Settlement::SetPlayer(int)": {
+      "summary": "Cambia el propietario del asentamiento. Si el jugador es distinto del actual, pasa el oro almacenado a las estadísticas del nuevo propietario y asigna el nuevo dueño a todos los edificios del asentamiento.",
+      "notes": "Que un objeto se una a un asentamiento no cambia su propietario; solo este cambio de dueño del asentamiento lo hace. El recorrido de los edificios no se ha comprobado instrucción a instrucción."
+    },
+    "int GetClassHealt(str)": {
+      "summary": "Busca una clase por su nombre y devuelve su valor de salud de clase. Devuelve 0 si no existe ninguna clase con ese nombre.",
+      "notes": "El nombre se escribe así, «Healt». Un 0 permite saber que una clase no está cargada; por ejemplo, un script puede comprobar que una clase de héroe existe antes de cambiar de mapa. No es una función general de búsqueda de clases, y el cálculo completo de la salud no está documentado."
+    },
+    "int CheckLsaPath(int,int,int)": {
+      "summary": "Comprueba si hay un camino entre dos áreas de búsqueda (LSA) para un jugador. Devuelve 1 si las dos LSA son la misma y 0 si son de tipos distintos.",
+      "notes": "El tercer argumento es el número de jugador contado desde 1. No se ha observado el resultado para dos LSA distintas del mismo tipo."
+    },
+    "point Flying::PickFlyingPoint(int)": {
+      "summary": "Elige un punto de vuelo a una distancia aproximada indicada por el argumento. Sigue la dirección de una unidad cercana de la misma clase que esté en movimiento; si no la hay, prueba doce direcciones y escoge la menos concurrida y más parecida a la actual.",
+      "notes": "Al punto resultante se le añade una pequeña variación aleatoria. Un objeto no válido devuelve el punto (0, 0). Descripción basada solo en lectura estática."
+    },
+    "void GiveNote(str)": {
+      "summary": "Muestra al jugador el objetivo de mapa cuyo identificador coincide con el texto, tal como está definido en el Notes.xml del mapa.",
+      "notes": "Se ha observado en partida un aviso con icono y el título del objetivo. Con un identificador que no existe no se muestra nada. No se ha comprobado la ventana de objetivos ni la marca en el minimapa."
+    },
+    "void Ship::ShowBuildAnimation(point)": {
+      "summary": "Desliza un barco ya creado desde la salida del astillero a lo largo del vector indicado, en unos 800 milisegundos, como si se botara. No es una secuencia de construcción.",
+      "notes": "Los datos del juego solo la llaman desde el script del astillero, después de CreateShip y con el vector de salida del edificio central. La posición se actualiza durante el deslizamiento. No se ha capturado el resultado visual."
+    },
+    "void ChangeMap(str,str)": {
+      "summary": "Cambia al mapa cuyo nombre en map.xml coincide con el primer texto. Si varios mapas comparten nombre, se usa la primera carpeta en orden alfabético.",
+      "notes": "El primer texto es el nombre del mapa, no el número de carpeta. Si ningún mapa tiene ese nombre, se registra «ChangeMap: No map is named …» y no hay cambio. El segundo texto no está documentado aquí."
+    },
+    "void Gate::CloseNow()": {
+      "summary": "Cierra la puerta de inmediato si no está ya cerrada y no está destruida.",
+      "notes": "Una puerta en el estado de daño máximo no se ve afectada. El movimiento de la puerta después del cierre no está documentado aquí."
+    },
+    "bool Gate::IsOpened()": {
+      "summary": "Devuelve verdadero solo cuando la puerta está abierta y su animación de apertura ha terminado.",
+      "notes": "Mientras la puerta se está abriendo devuelve falso. El resultado con un objeto que no es una puerta válida no se ha vuelto a comprobar."
+    },
+    "int EvalGroup(str)": {
+      "summary": "Suma la evaluación de las unidades vivas del grupo indicado por su nombre. Devuelve 0 si el grupo no existe, sin crearlo.",
+      "notes": "Solo cuentan los objetos que siguen en el mapa. El significado del valor de evaluación no está documentado aquí."
+    },
+    "point Unit::GetUnexploredPoint(int)": {
+      "summary": "Devuelve un punto aleatorio sin explorar cerca de la unidad, o el punto (-1, -1) si no encuentra ninguno.",
+      "notes": "Con el argumento -1, la zona de búsqueda mide unas cuatro veces un campo de la unidad (probablemente su visión), entre 512 y 3000 unidades de lado. Puede devolver (-1, -1) aunque gran parte del mapa siga sin explorar. El juego la usa en la orden de explorar."
+    }
+  }
 }

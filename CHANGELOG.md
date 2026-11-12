@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.3 (preview)
+
+- Reviewed descriptions and usage notes for 31 functions, now also in Spanish, matching the
+  [Imperivm Modding Wiki](https://openimperivm.com/). Ten of them had no description before, among them
+  `AreaObjs`, `GetClassHealt`, `CheckLsaPath`, `Settlement::SetPlayer` and `Flying::PickFlyingPoint`;
+  others such as `ChangeMap`, `GiveNote` and `Ship::ShowBuildAnimation` now describe what they actually do.
+
 ## 0.1.2 (preview)
 
 - Revised function descriptions.
